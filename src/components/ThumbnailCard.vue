@@ -1,5 +1,8 @@
 <template>
-  <div id="card" class="block shadow-allround overflow-hidden rounded-lg w-56">
+  <div
+    id="card"
+    class="block shadow-allround bg-gray-100 overflow-hidden rounded-lg w-56"
+  >
     <div id="thumbnail-card">
       <img
         src="../assets/card-thumbnail.jpg"

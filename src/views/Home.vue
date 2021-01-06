@@ -1,8 +1,14 @@
 <template>
-  <div id="home" class="w-full h-full text-left p-5 sm:p-8 lg:p-12 pb-20">
+  <div
+    id="home"
+    class="w-full h-full text-left p-5 sm:p-8 lg:p-12 overflow-y-auto"
+  >
     <div id="group-top" class="xl:flex xl:gap-5 ">
       <div id="group-1" class="flex-grow">
-        <div id="welcome" class="block nav-color p-5  mb-5 rounded-md ">
+        <div
+          id="welcome"
+          class="block nav-color p-5 shadow-md mb-5 rounded-md "
+        >
           <h1 class="font-bold text-2xl md:text-4xl mb-2">
             Good Morning, {{ user.userName }}
           </h1>
@@ -16,12 +22,12 @@
           ></div>
         </div>
       </div>
-      <div id="group-2" class="flex-grow my-4 xl:my-0">
+      <div id="group-2" class="flex-grow my-4 xl:my-0 shadow-md">
         <div class="box-atention-color h-full rounded-md p-5 text-left">
-          <h1 id="user-data" class="font-bold text-2xl">Static</h1>
+          <h1 id="user-data" class="font-bold text-xl lg:text-2xl">Info</h1>
           <div
             id="count-collection"
-            class="flex items-center justify-evenly xl:bg-gray-100 rounded-lg xl:mt-2"
+            class="flex items-center justify-evenly shadow-lg bg-gray-100 py-1 lg:py-3 rounded-lg mt-2"
           >
             <div
               id="count-diary"
@@ -45,6 +51,10 @@
               <font-awesome-icon icon="trophy" />
             </div>
           </div>
+          <!-- Recent Achievement Maybe -->
+          <h1 id="user-data" class="font-bold text-xl lg:text-2xl mt-4">
+            Recent Achievement
+          </h1>
         </div>
       </div>
     </div>
