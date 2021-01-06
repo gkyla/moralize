@@ -3,3 +3,32 @@
 @tailwind components;
 
 @tailwind utilities;
+
+@layer utilities {
+  @responsive {
+    .shadow-allround {
+      box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-color {
+      /* background-color: #f6f5f5; */
+      background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+      /* background-color: #fbfd8a; */
+    }
+
+    .box-color {
+      background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+    }
+
+    .box-atention-color {
+      /* background-image: linear-gradient(60deg, #96deda 0%, #50c9c3 100%); */
+      /* background-image: linear-gradient(-225deg, #20e2d7 0%, #f9fea5 100%); */
+      background-image: linear-gradient(
+        -225deg,
+        #dfffcd 0%,
+        #90f9c4 48%,
+        #39f3bb 100%
+      );
+    }
+  }
+}

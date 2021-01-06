@@ -1,4 +1,4 @@
-import CONFIG from "./config.js";
+import CONFIG from "../settings/config.js";
 import { openDB } from "idb";
 
 const db = openDB(CONFIG.DATABASE_NAME, CONFIG.DATABASE_VERSION, {
