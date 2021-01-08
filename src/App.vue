@@ -8,11 +8,18 @@
       <router-view />
     </template>
   </moralize-layout>
+
+  <teleport to="#modal"> </teleport>
 </template>
 
 <script>
+// import { reactive } from "vue";
+// import { useStore } from "vuex";
 import MoralizeLayout from "./components/MoralizeLayout.vue";
 import TheNavbar from "./components/TheNavbar.vue";
+
+// import moralizeDb from "./data/idb";
+// import CONFIG from "./settings/config";
 
 export default {
   components: {
@@ -29,6 +36,10 @@ body,
 html {
   width: 100%;
   height: 100vh;
+}
+
+#modal {
+  font-family: "Noto Sans", sans-serif;
 }
 
 #app {

@@ -7,7 +7,9 @@ import {
   faBookOpen,
   faStickyNote,
   faTrophy,
-  faPlusCircle
+  faPlusCircle,
+  faCog,
+  faCalendarAlt
 } from "@fortawesome/free-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -16,7 +18,15 @@ import router from "./router";
 import store from "./store";
 import "./assets/tailwind.css";
 
-const icons = [faHome, faBookOpen, faStickyNote, faTrophy, faPlusCircle];
+const icons = [
+  faHome,
+  faBookOpen,
+  faStickyNote,
+  faTrophy,
+  faPlusCircle,
+  faCog,
+  faCalendarAlt
+];
 
 library.add(...icons);
 

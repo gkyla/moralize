@@ -1,7 +1,7 @@
 <template>
   <div
     id="home"
-    class="w-full h-full text-left p-5 sm:p-8 lg:p-12 overflow-y-auto"
+    class="w-full h-full text-left p-5 sm:p-8 lg:p-12 overflow-y-auto "
   >
     <div id="group-top" class="xl:flex xl:gap-5 ">
       <div id="group-1" class="flex-grow">
@@ -18,7 +18,7 @@
           <h1 class="font-bold text-xl mb-3 lg:md-5">Pinned Things</h1>
           <div
             id="pinned-content"
-            class="p-20 shadow-allround  rounded-lg"
+            class="p-20 shadow-allround nav-color rounded-lg"
           ></div>
         </div>
       </div>

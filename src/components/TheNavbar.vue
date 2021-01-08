@@ -2,7 +2,7 @@
   <nav
     class="fixed bottom-0 right-0 w-full md:relative md:h-screen flex items-center p-4 md:flex-col nav-color flex-shrink-0 md:w-56 lg:w-72 "
   >
-    <user-badge class="hidden md:flex"></user-badge>
+    <user-badge class="hidden md:block"></user-badge>
     <div id="nav-links" class="text-left flex justify-around w-full md:block">
       <router-link to="/" class="nav-link font-bold">
         <font-awesome-icon class="text-2xl" icon="home" />
@@ -12,14 +12,16 @@
         <font-awesome-icon class="text-2xl" icon="book-open" />
         <p class=" ml-5 hidden md:inline">Diary Note</p>
       </router-link>
-      <button class="nav-link md:hidden">
-        <font-awesome-icon class="text-2xl" icon="plus-circle" />
-      </button>
+      <add-button></add-button>
       <router-link to="/your-target" class="nav-link font-bold">
         <font-awesome-icon class="text-2xl" icon="sticky-note" />
         <p class=" ml-5 hidden md:inline">Your Target</p>
       </router-link>
-      <router-link to="/achievement" class="nav-link font-bold">
+      <router-link to="/event" class="nav-link font-bold">
+        <font-awesome-icon class="text-2xl" icon="calendar-alt" />
+        <p class=" ml-5 hidden md:inline">Event</p>
+      </router-link>
+      <router-link to="/achievement" class="nav-link font-bold hidden lg:block">
         <font-awesome-icon class="text-2xl" icon="trophy" />
         <p class=" ml-5 hidden md:inline">Achievement</p>
       </router-link>
@@ -30,10 +32,12 @@
 <script>
 import { useRouter } from "vue-router";
 import UserBadge from "./UserBadge.vue";
+import AddButton from "./AddButon.vue";
 
 export default {
   components: {
-    UserBadge
+    UserBadge,
+    AddButton
   },
   props: {
     logo: {
