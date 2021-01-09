@@ -15,10 +15,6 @@
       <button type="submit" class="block bg-green-300">Submit Form</button>
     </form>
   </div>
-  {{ data.content }}
-
-  <h1>From diary</h1>
-  {{ allDiary }}
 </template>
 
 <script>

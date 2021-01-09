@@ -1,7 +1,7 @@
 <template>
   <div
     id="home"
-    class="w-full h-full text-left p-5 sm:p-8 lg:p-12 overflow-y-auto "
+    class="w-full h-full text-left p-3 sm:p-5 lg:p-7 overflow-y-auto "
   >
     <div id="group-top" class="xl:flex xl:gap-5 ">
       <div id="group-1" class="flex-grow">
@@ -12,7 +12,9 @@
           <h1 class="font-bold text-lg sm:text-2xl md:text-4xl mb-2">
             Good Morning, {{ user.userName }}
           </h1>
-          <span class="text-sm sm:text-lg">{{ greetings }}</span>
+          <span class="text-sm sm:text-lg">
+            {{ greetings ? greetings : "Setting up time .." }}</span
+          >
         </div>
         <div id="pinned">
           <h1 class="font-bold text-xl mb-3 lg:md-5">Pinned Things</h1>
@@ -58,47 +60,63 @@
         </div>
       </div>
     </div>
-    <div id="recent-diary" class="my-5">
-      <h1 class="font-bold text-xl mb-3 lg:md-5">Recent Diary</h1>
+    <item-container name="Recent Diary">
       <card-diary></card-diary>
-    </div>
-    <div id="recent-target" class="my-5">
-      <h1 class="font-bold text-xl mb-3 lg:md-5">Recent Target</h1>
+      <card-diary></card-diary>
+      <card-diary></card-diary>
+    </item-container>
+    <item-container name="Recent Target">
       <card-target></card-target>
-    </div>
-    <div id="finished-target" class="my-5">
-      <h1 class="font-bold text-xl mb-3 lg:md-5">Finished Target</h1>
+      <card-target></card-target>
+    </item-container>
+    <item-container name="Finished Target">
       <card-target :done="true"></card-target>
-    </div>
+    </item-container>
   </div>
 </template>
 
 <script>
 import CardDiary from "../components/CardDiary.vue";
 import CardTarget from "../components/CardTarget.vue";
+import itemContainer from "../components/ItemContainer.vue";
 
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
-import * as moment from "moment";
+import moment from "moment";
 // @ is an alias to /src
 
 export default {
   name: "Home",
   components: {
     CardDiary,
-    CardTarget
+    CardTarget,
+    itemContainer
   },
 
   setup() {
     const store = useStore();
     const user = computed(() => store.state.user);
-
     const greetings = ref(null);
-    greetings.value = moment().format("MMMM Do YYYY, h:mm:ss a");
+
+    function onSwiper(swiper) {
+      console.log(swiper);
+    }
+
+    function onSlideChange() {
+      console.log("keganti");
+    }
+
+    // Update every second
+    setInterval(
+      () => (greetings.value = moment().format("MMMM Do YYYY, hh:mm:ss A")),
+      1000
+    );
 
     return {
       user,
-      greetings
+      greetings,
+      onSwiper,
+      onSlideChange
     };
   }
 };

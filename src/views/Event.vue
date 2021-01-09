@@ -1,5 +1,7 @@
 <template>
-  <div id="event"></div>
+  <div id="event">
+    <h1 class="text-4xl">Loolll</h1>
+  </div>
 </template>
 
 <script>
