@@ -8,7 +8,7 @@
       <div class="block object-center object-cover w-1/2 lg:w-1/3 md:mb-3">
         <img
           :src="img"
-          class="rounded-full border-gray-400 block"
+          class="rounded-full border-2 border-green-300 block"
           alt="User img"
         />
       </div>

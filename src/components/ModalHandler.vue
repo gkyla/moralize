@@ -181,7 +181,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    name: String
+  },
+  setup(){
+    const 
+  }
+};
 </script>
 
 <style></style>

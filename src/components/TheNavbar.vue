@@ -12,7 +12,7 @@
         <font-awesome-icon class="text-2xl" icon="book-open" />
         <p class=" ml-5 hidden md:inline">Diary Note</p>
       </router-link>
-      <add-button class="md:hidden"></add-button>
+      <add-button-handler class="md:hidden" />
       <router-link to="/your-target" class="nav-link font-bold">
         <font-awesome-icon class="text-2xl" icon="sticky-note" />
         <p class=" ml-5 hidden md:inline">Your Target</p>
@@ -32,12 +32,12 @@
 <script>
 import { useRouter } from "vue-router";
 import UserBadge from "./UserBadge.vue";
-import AddButton from "./AddButon.vue";
+import AddButtonHandler from "./AddButtonHandler.vue";
 
 export default {
   components: {
     UserBadge,
-    AddButton
+    AddButtonHandler
   },
   props: {
     logo: {
@@ -71,8 +71,6 @@ export default {
 }
 
 .nav-color {
-  /* background-color: #f6f5f5; */
   background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-  /* background-color: #fbfd8a; */
 }
 </style>

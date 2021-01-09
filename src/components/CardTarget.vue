@@ -1,7 +1,7 @@
 <template>
   <div
     id="card"
-    class="relative block shadow-allround border-3 bg-gray-100 rounded-lg w-56 my-10"
+    class="relative block flex-shrink-0 mr-7 shadow-allround border-3 bg-gray-100 rounded-lg w-56 my-2"
   >
     <div id="content" class="px-2 py-4 relative">
       <div
