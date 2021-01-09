@@ -31,6 +31,17 @@
       );
     }
 
+    .box-atention-color-hover {
+      /* background-image: linear-gradient(60deg, #96deda 0%, #50c9c3 100%); */
+      /* background-image: linear-gradient(-225deg, #20e2d7 0%, #f9fea5 100%); */
+      background-image: linear-gradient(
+        -225deg,
+        #dfffcd 0%,
+        #90f9c4 60%,
+        #39f3bb 100%
+      );
+    }
+
     .max-h-diary {
       max-height: 550px;
     }
