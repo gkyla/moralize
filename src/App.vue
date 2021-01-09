@@ -5,11 +5,13 @@
     </template>
 
     <template #main>
-      <router-view />
+      <router-view v-slot="{ Component }">
+        <transition name="fade" mode="out-in">
+          <component :is="Component"></component>
+        </transition>
+      </router-view>
     </template>
   </moralize-layout>
-
-  <teleport to="#modal"> </teleport>
 </template>
 
 <script>
@@ -31,6 +33,21 @@ export default {
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.2s ease-in-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+}
 
 body,
 html {
