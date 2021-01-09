@@ -12,7 +12,7 @@
         <font-awesome-icon class="text-2xl" icon="book-open" />
         <p class=" ml-5 hidden md:inline">Diary Note</p>
       </router-link>
-      <add-button></add-button>
+      <add-button class="md:hidden"></add-button>
       <router-link to="/your-target" class="nav-link font-bold">
         <font-awesome-icon class="text-2xl" icon="sticky-note" />
         <p class=" ml-5 hidden md:inline">Your Target</p>

@@ -4,12 +4,19 @@
 
     <main id="main" class="w-full h-screen pb-20 md:pb-0 overflow-y-auto">
       <slot name="main"></slot>
+
+      <add-button class="hidden md:block fixed bottom-3 right-10"></add-button>
     </main>
   </div>
 </template>
 
 <script>
-export default {};
+import AddButton from "./AddButon.vue";
+export default {
+  components: {
+    AddButton
+  }
+};
 </script>
 
 <style scoped>

@@ -9,10 +9,10 @@
           id="welcome"
           class="block nav-color p-5 shadow-md mb-5 rounded-md "
         >
-          <h1 class="font-bold text-2xl md:text-4xl mb-2">
+          <h1 class="font-bold text-lg sm:text-2xl md:text-4xl mb-2">
             Good Morning, {{ user.userName }}
           </h1>
-          <span>{{ greetings }}</span>
+          <span class="text-sm sm:text-lg">{{ greetings }}</span>
         </div>
         <div id="pinned">
           <h1 class="font-bold text-xl mb-3 lg:md-5">Pinned Things</h1>
@@ -60,17 +60,22 @@
     </div>
     <div id="recent-diary" class="my-5">
       <h1 class="font-bold text-xl mb-3 lg:md-5">Recent Diary</h1>
-      <thumbnail-card></thumbnail-card>
+      <card-diary></card-diary>
     </div>
     <div id="recent-target" class="my-5">
       <h1 class="font-bold text-xl mb-3 lg:md-5">Recent Target</h1>
-      <thumbnail-card></thumbnail-card>
+      <card-target></card-target>
+    </div>
+    <div id="finished-target" class="my-5">
+      <h1 class="font-bold text-xl mb-3 lg:md-5">Finished Target</h1>
+      <card-target :done="true"></card-target>
     </div>
   </div>
 </template>
 
 <script>
-import ThumbnailCard from "../components/ThumbnailCard.vue";
+import CardDiary from "../components/CardDiary.vue";
+import CardTarget from "../components/CardTarget.vue";
 
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
@@ -80,7 +85,8 @@ import * as moment from "moment";
 export default {
   name: "Home",
   components: {
-    ThumbnailCard
+    CardDiary,
+    CardTarget
   },
 
   setup() {

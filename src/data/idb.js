@@ -3,7 +3,10 @@ import { openDB } from "idb";
 
 const db = openDB(CONFIG.DATABASE_NAME, CONFIG.DATABASE_VERSION, {
   upgrade(database) {
-    database.createObjectStore(CONFIG.DB_KEY_STORY, { keyPath: "id" });
+    database.createObjectStore(CONFIG.DB_KEY_DIARY, {
+      keyPath: "id",
+      autoIncrement: true
+    });
     database.createObjectStore(CONFIG.DB_KEY_TARGET, { keyPath: "id" });
     database.createObjectStore(CONFIG.DB_KEY_USERINFO, {
       keyPath: "model"

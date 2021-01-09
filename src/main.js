@@ -1,6 +1,7 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 import { library } from "@fortawesome/fontawesome-svg-core";
+import CKEditor from "@ckeditor/ckeditor5-vue";
 
 import {
   faHome,
@@ -9,7 +10,15 @@ import {
   faTrophy,
   faPlusCircle,
   faCog,
-  faCalendarAlt
+  faCalendarAlt,
+  faSpinner,
+  faCheck,
+  faTimes,
+  faImage,
+  faTag,
+  faTrash,
+  faExpandArrowsAlt,
+  faCompress
 } from "@fortawesome/free-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -25,7 +34,15 @@ const icons = [
   faTrophy,
   faPlusCircle,
   faCog,
-  faCalendarAlt
+  faCalendarAlt,
+  faSpinner,
+  faCheck,
+  faTimes,
+  faImage,
+  faTag,
+  faTrash,
+  faExpandArrowsAlt,
+  faCompress
 ];
 
 library.add(...icons);
@@ -33,6 +50,7 @@ library.add(...icons);
 createApp(App)
   .use(store)
   .use(router)
+  .use(CKEditor)
   .use(require("moment"))
   .component("font-awesome-icon", FontAwesomeIcon)
   .mount("#app");
