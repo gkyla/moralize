@@ -16,23 +16,48 @@
 
 <script>
 // import { reactive } from "vue";
-// import { useStore } from "vuex";
+import { useStore } from "vuex";
 import MoralizeLayout from "./components/MoralizeLayout.vue";
 import TheNavbar from "./components/TheNavbar.vue";
 
-// import moralizeDb from "./data/idb";
-// import CONFIG from "./settings/config";
+import moralizeDb from "./data/idb";
+import CONFIG from "./settings/config";
 
 export default {
   components: {
     MoralizeLayout,
     TheNavbar
+  },
+  setup() {
+    const store = useStore();
+
+    // call the value
+    async function getAllDiary() {
+      const val = await moralizeDb.getAllItem(CONFIG.DB_KEY_DIARY);
+      console.log(val);
+      store.commit("diary/getAllDiary", val);
+    }
+
+    async function getAllUserInfo() {
+      // const val = await moralizeDb.getAllItem(CONFIG.DB_KEY_USERINFO);
+      // store.commit("user/updateDiary", val);
+    }
+
+    async function getAllTarget() {
+      // const val = await moralizeDb.getAllItem(CONFIG.DB_KEY_TARGET);
+      // console.log("target", val);
+    }
+
+    getAllDiary();
+    getAllUserInfo();
+    getAllTarget();
   }
 };
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@400;500;600&display=swap");
 
 .fade-enter-active,
 .fade-leave-active {
@@ -56,7 +81,8 @@ html {
 }
 
 #modal {
-  font-family: "Noto Sans", sans-serif;
+  /* font-family: "Noto Sans", sans-serif; */
+  font-family: "Dosis", sans-serif;
 }
 
 #app {
@@ -65,7 +91,8 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  font-family: "Noto Sans", sans-serif;
+  /* font-family: "Noto Sans", sans-serif; */
+  font-family: "Dosis", sans-serif;
 }
 
 #nav {
