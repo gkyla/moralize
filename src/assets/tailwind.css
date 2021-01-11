@@ -7,7 +7,7 @@
 @layer utilities {
   @responsive {
     .shadow-allround {
-      box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.4);
     }
 
     .nav-color {
@@ -40,6 +40,10 @@
         #90f9c4 60%,
         #39f3bb 100%
       );
+    }
+
+    .max-h-image-sm {
+      max-height: 600px;
     }
 
     .max-h-diary {
