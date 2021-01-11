@@ -9,7 +9,7 @@
           id="welcome"
           class="block nav-color p-5 shadow-md mb-5 rounded-md "
         >
-          <h1 class="font-bold text-lg sm:text-2xl md:text-4xl mb-2">
+          <h1 class="font-bold text-xl sm:text-2xl md:text-4xl mb-2">
             Good Morning, {{ user.userName }}
           </h1>
           <span class="text-sm sm:text-lg">
@@ -35,8 +35,9 @@
               id="count-diary"
               class="flex flex-col p-2 text-2xl items-center"
             >
-              <p>0</p>
+              <p>{{ diaryState.allDiary.length }}</p>
               <font-awesome-icon icon="book-open" />
+              <p class="text-sm mt-1">Diary</p>
             </div>
             <div
               id="count-diary"
@@ -44,13 +45,15 @@
             >
               <p>0</p>
               <font-awesome-icon icon="sticky-note" />
+              <p class="text-sm mt-1">Target</p>
             </div>
             <div
               id="count-trophy"
               class="flex flex-col p-2 text-2xl items-center"
             >
               <p>0</p>
-              <font-awesome-icon icon="trophy" />
+              <font-awesome-icon icon="calendar-plus" />
+              <p class="text-sm mt-1">Event</p>
             </div>
           </div>
           <!-- Recent Achievement Maybe -->
@@ -61,9 +64,13 @@
       </div>
     </div>
     <item-container name="Recent Diary">
-      <card-diary></card-diary>
-      <card-diary></card-diary>
-      <card-diary></card-diary>
+      <div v-if="diaryState.loading">Loading up data ..</div>
+      <card-diary
+        v-else
+        v-for="diary in diaryState.allDiary"
+        :diary="diary"
+        :key="diary.id"
+      />
     </item-container>
     <item-container name="Recent Target">
       <card-target></card-target>
@@ -96,6 +103,8 @@ export default {
   setup() {
     const store = useStore();
     const user = computed(() => store.state.user);
+    const diaryState = ref(store.state.diary);
+    console.log(diaryState.value);
     const greetings = ref(null);
 
     function onSwiper(swiper) {
@@ -116,7 +125,8 @@ export default {
       user,
       greetings,
       onSwiper,
-      onSlideChange
+      onSlideChange,
+      diaryState
     };
   }
 };
