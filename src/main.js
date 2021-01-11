@@ -11,14 +11,15 @@ import {
   faPlusCircle,
   faCog,
   faCalendarAlt,
-  faSpinner,
+  faPercent,
   faCheck,
   faTimes,
   faImage,
   faTag,
   faTrash,
   faExpandArrowsAlt,
-  faCompress
+  faCompress,
+  faCalendarPlus
 } from "@fortawesome/free-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -35,14 +36,15 @@ const icons = [
   faPlusCircle,
   faCog,
   faCalendarAlt,
-  faSpinner,
+  faPercent,
   faCheck,
   faTimes,
   faImage,
   faTag,
   faTrash,
   faExpandArrowsAlt,
-  faCompress
+  faCompress,
+  faCalendarPlus
 ];
 
 library.add(...icons);
