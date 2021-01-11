@@ -6,7 +6,7 @@ const user = {
   state: {
     model: "user",
     firstTimeSetup: true,
-    userName: "Moralize",
+    userName: "User",
     userImg: "user-default.png",
     userBirthday: "",
     imgDefault: true
