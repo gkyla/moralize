@@ -10,6 +10,9 @@ const db = openDB(CONFIG.DATABASE_NAME, CONFIG.DATABASE_VERSION, {
     database.createObjectStore(CONFIG.DB_KEY_USERINFO, {
       keyPath: "model"
     });
+    database.createObjectStore(CONFIG.DB_KEY_PINED, {
+      keyPath: "id"
+    });
   }
 });
 
@@ -24,6 +27,10 @@ const moralizeDb = {
 
   async putItem(key, value) {
     return (await db).put(key, value);
+  },
+
+  async deleteItem(key, id) {
+    return (await db).delete(key, id);
   }
 };
 

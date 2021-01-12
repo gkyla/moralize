@@ -20,8 +20,8 @@ import { useStore } from "vuex";
 import MoralizeLayout from "./components/MoralizeLayout.vue";
 import TheNavbar from "./components/TheNavbar.vue";
 
-import moralizeDb from "./data/idb";
-import CONFIG from "./settings/config";
+// import moralizeDb from "./data/idb";
+// import CONFIG from "./settings/config";
 
 export default {
   components: {
@@ -30,27 +30,10 @@ export default {
   },
   setup() {
     const store = useStore();
-
+    store.dispatch("diary/getAllDiary");
     // call the value
-    async function getAllDiary() {
-      const val = await moralizeDb.getAllItem(CONFIG.DB_KEY_DIARY);
-      console.log(val);
-      store.commit("diary/getAllDiary", val);
-    }
 
-    async function getAllUserInfo() {
-      // const val = await moralizeDb.getAllItem(CONFIG.DB_KEY_USERINFO);
-      // store.commit("user/updateDiary", val);
-    }
-
-    async function getAllTarget() {
-      // const val = await moralizeDb.getAllItem(CONFIG.DB_KEY_TARGET);
-      // console.log("target", val);
-    }
-
-    getAllDiary();
-    getAllUserInfo();
-    getAllTarget();
+    // initGetAllUserDataDB();
   }
 };
 </script>

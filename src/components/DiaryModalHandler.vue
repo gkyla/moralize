@@ -28,6 +28,7 @@
             >
             <input
               id="title"
+              placeholder="Add Title"
               v-model="diaryData.title"
               class="border rounded-lg w-full px-2 py-2 text-2xl shadow"
               type="text"
@@ -65,7 +66,7 @@
               />
               <div id="image-option" class="absolute bottom-2 left-2">
                 <button
-                  class=" bg-gray-100 py-2 px-4 shadow-md rounded-lg mr-2 opacity-50 hover:opacity-100"
+                  class="button-option"
                   @click="deleteImgAssets"
                   v-if="isImage"
                 >
@@ -75,11 +76,12 @@
             </div>
             <div
               id="options-stuff"
-              class="lg:ml-3 mt-2 lg:mt-0 min-w-min flex-shrink-0 flex flex-grow flex-col rounded-lg"
+              class="lg:ml-3 mt-2 lg:mt-0 min-w-min flex-shrink-0 flex flex-grow flex-col rounded-lg text-lg text-gray-600"
             >
               <div id="tag-option" class="flex flex-col mb-2">
-                <label for="add-tag" class="font-bold flex items-center py-3">
+                <label for="add-tag" class="font-bold flex items-center py-2">
                   <p class="mr-3">Tag</p>
+                  <font-awesome-icon icon="tag" />
                 </label>
                 <input
                   type="text"
@@ -90,7 +92,13 @@
                 />
               </div>
               <div id="mood-option" class="flex flex-col">
-                <label for="mood-option" class="py-3 font-bold">Mood</label>
+                <label
+                  for="mood-option"
+                  class="py-3 font-bold flex items-center"
+                >
+                  <p class="mr-3">Mood</p>
+                  <font-awesome-icon icon="theater-masks" />
+                </label>
                 <select
                   name="mood-option"
                   id="mood-option"
@@ -104,8 +112,27 @@
                   <option value="Excited">Excited</option>
                 </select>
               </div>
+              <div id="location-option" class="flex flex-col mb-2">
+                <label
+                  for="add-location"
+                  class="font-bold flex items-center py-3"
+                >
+                  <p class="mr-3">Location</p>
+                  <font-awesome-icon icon="map-marker-alt" />
+                </label>
+                <input
+                  type="text"
+                  id="add-location"
+                  placeholder="Add location"
+                  v-model="diaryData.location"
+                  class="border rounded-lg bg-white px-3 py-2 shadow"
+                />
+              </div>
               <div id="created-on">
-                <h1 class="font-bold text-md py-3">Created on</h1>
+                <div class="flex items-center">
+                  <h1 class="font-bold py-3 mr-3">Created on</h1>
+                  <font-awesome-icon icon="calendar-plus" />
+                </div>
                 <p>{{ new Date().toDateString() }}</p>
               </div>
             </div>
@@ -133,7 +160,7 @@
 
 <script>
 /* eslint-disable no-unused-vars */
-import { ref, reactive, computed } from "vue";
+import { ref, reactive, computed, watchEffect } from "vue";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import moralizeDb from "../data/idb";
 import CONFIG from "../settings/config";
@@ -153,6 +180,8 @@ export default {
     const store = useStore();
     const diaryIsOpened = ref(props.isOpened);
     const currentAllDiary = computed(() => store.state.diary.allDiary);
+    const currentDiaryLoaded = computed(() => store.state.diary.currentDiary);
+
     const diaryIsExistData = ref([]);
 
     function updateStatus() {
@@ -162,7 +191,9 @@ export default {
 
     const editorOptions = reactive({
       editor: ClassicEditor,
-      config: {}
+      config: {
+        removePlugins: ["insertImage", "mediaEmbed"]
+      }
     });
 
     const diaryData = ref({
@@ -171,6 +202,8 @@ export default {
       title: "",
       content: "<p>Rain is calming...</p>",
       tag: "",
+      location: "",
+      pin: false,
       mood: "Happy",
       assets: "",
       createdOn: new Date().toDateString()
@@ -197,17 +230,6 @@ export default {
       };
     }
 
-    async function saveAndUpdateDB(data) {
-      // Push it to diary state
-      // And also update it on the indexedDB
-      store.commit("diary/updateDiary", data);
-      await moralizeDb.putItem(CONFIG.DB_KEY_DIARY, data);
-
-      // After that get all Diary and update it on the indexedDB
-      const val = await moralizeDb.getAllItem(CONFIG.DB_KEY_DIARY);
-      store.commit("diary/getAllDiary", val);
-    }
-
     function generateId() {
       let initId;
 
@@ -225,34 +247,24 @@ export default {
 
     function submitDiary() {
       const addData = { ...diaryData.value };
-
       if (addData.title === "") {
         addData.title = `Untitled ${addData.id}`;
       }
-
-      if (props.type && props.id) {
-        editDiary(addData);
-      } else {
-        saveAndUpdateDB(addData);
-      }
-
+      store.dispatch("diary/saveTheDiary", addData);
       updateStatus();
     }
 
-    async function editDiary(data) {
+    function loadDiary() {
       if (props.type && props.id) {
-        await moralizeDb.putItem(CONFIG.DB_KEY_DIARY, data);
-        const val = await moralizeDb.getAllItem(CONFIG.DB_KEY_DIARY);
-        store.commit("diary/getAllDiary", val);
+        store.dispatch("diary/getTheDiary", props.id);
+
+        watchEffect(() => {
+          diaryData.value = currentDiaryLoaded.value;
+          console.log(diaryData.value);
+        });
       }
     }
 
-    async function loadDiary() {
-      if (props.type && props.id) {
-        const val = await moralizeDb.getItem(CONFIG.DB_KEY_DIARY, props.id);
-        diaryData.value = val;
-      }
-    }
     loadDiary();
 
     return {
@@ -275,5 +287,9 @@ export default {
 .ck-editor {
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2);
   border-radius: 10px;
+}
+
+.button-option {
+  @apply bg-gray-100 py-2 px-4 shadow-md rounded-lg mr-2 opacity-50 hover:opacity-100;
 }
 </style>

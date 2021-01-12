@@ -4,11 +4,11 @@
     class="w-full h-full text-left p-3 sm:p-5 lg:p-7 overflow-y-auto "
   >
     <div id="group-top" class="xl:flex xl:gap-5 ">
-      <div id="group-1" class="flex-grow">
-        <div
-          id="welcome"
-          class="block nav-color p-5 shadow-md mb-5 rounded-md "
-        >
+      <div
+        id="welcome"
+        class="flex items-center nav-color p-5 shadow-md rounded-md w-full xl:w-1/3"
+      >
+        <div class="w-full h-full">
           <h1 class="font-bold text-xl sm:text-2xl md:text-4xl mb-2">
             Good Morning, {{ user.userName }}
           </h1>
@@ -16,15 +16,8 @@
             {{ greetings ? greetings : "Setting up time .." }}</span
           >
         </div>
-        <div id="pinned">
-          <h1 class="font-bold text-xl mb-3 lg:md-5">Pinned Things</h1>
-          <div
-            id="pinned-content"
-            class="p-20 shadow-allround nav-color rounded-lg"
-          ></div>
-        </div>
       </div>
-      <div id="group-2" class="flex-grow my-4 xl:my-0 shadow-md">
+      <div id="group-2" class="flex-grow my-4 xl:my-0 shadow-md ">
         <div class="box-atention-color h-full rounded-md p-5 text-left">
           <h1 id="user-data" class="font-bold text-xl lg:text-2xl">Info</h1>
           <div
@@ -104,16 +97,9 @@ export default {
     const store = useStore();
     const user = computed(() => store.state.user);
     const diaryState = ref(store.state.diary);
-    console.log(diaryState.value);
+    // const pinState = computed(() => store.state.pin);
+
     const greetings = ref(null);
-
-    function onSwiper(swiper) {
-      console.log(swiper);
-    }
-
-    function onSlideChange() {
-      console.log("keganti");
-    }
 
     // Update every second
     setInterval(
@@ -124,8 +110,7 @@ export default {
     return {
       user,
       greetings,
-      onSwiper,
-      onSlideChange,
+      // pinState
       diaryState
     };
   }

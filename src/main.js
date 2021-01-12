@@ -19,7 +19,10 @@ import {
   faTrash,
   faExpandArrowsAlt,
   faCompress,
-  faCalendarPlus
+  faCalendarPlus,
+  faThumbtack,
+  faMapMarkerAlt,
+  faTheaterMasks
 } from "@fortawesome/free-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -44,7 +47,10 @@ const icons = [
   faTrash,
   faExpandArrowsAlt,
   faCompress,
-  faCalendarPlus
+  faCalendarPlus,
+  faThumbtack,
+  faMapMarkerAlt,
+  faTheaterMasks
 ];
 
 library.add(...icons);
