@@ -58,11 +58,15 @@
     </div>
     <item-container name="Recent Diary">
       <div v-if="diaryState.loading">Loading up data ..</div>
+      <div v-else-if="isDiaryEmpty" class=" px-14 py-28 rounded-lg border">
+        No Diary Found
+      </div>
       <card-diary
         v-else
         v-for="diary in diaryState.allDiary"
         :diary="diary"
         :key="diary.id"
+        :customClass="['card-diary-style-home']"
       />
     </item-container>
     <item-container name="Recent Target">
@@ -96,8 +100,17 @@ export default {
   setup() {
     const store = useStore();
     const user = computed(() => store.state.user);
-    const diaryState = ref(store.state.diary);
+    // const diaryState = ref(store.state.diary);
+    const diaryState = computed(() => store.state.diary);
     // const pinState = computed(() => store.state.pin);
+
+    const isDiaryEmpty = computed(() => {
+      if (store.state.diary.allDiary.length === 0) {
+        return true;
+      } else {
+        return false;
+      }
+    });
 
     const greetings = ref(null);
 
@@ -111,6 +124,7 @@ export default {
       user,
       greetings,
       // pinState
+      isDiaryEmpty,
       diaryState
     };
   }
