@@ -6,14 +6,52 @@
 
 @layer utilities {
   @responsive {
+    .container {
+      @apply w-full h-full text-left p-3 sm:p-5 lg:p-7 overflow-y-auto;
+    }
+
+    .card-diary-style-home {
+      @apply text-left inline-block flex-shrink-0 mr-4 md:mr-5 overflow-hidden bg-white rounded-xl w-full xsm:w-48  md:w-56 cursor-pointer;
+    }
+
+    .card-diary-style-diarynote {
+      @apply text-left rounded-lg overflow-hidden w-full xsm:width-48 lg:width-32 xl:width-19 xl:max-w-3xl lg:mr-2 bg-white cursor-pointer;
+    }
+
+    .title-heading {
+      @apply inline-block text-left mt-5 font-bold text-lg bg-gray-100 shadow-lg pl-3 rounded-md;
+    }
+
+    .button-handler {
+      @apply my-4 p-7 md:p-10 text-left shadow-md rounded-lg text-gray-700 hover:shadow-xl transition-all;
+    }
+
+    .button-option {
+      @apply bg-gray-100 py-2 px-4 shadow-md rounded-lg mr-2 opacity-50 hover:opacity-100;
+    }
+
+    .width-48 {
+      width: 48%;
+    }
+
+    .width-32 {
+      width: 32%;
+    }
+
+    .width-24 {
+      width: 24%;
+    }
+
+    .width-19 {
+      width: 19%;
+    }
+
     .shadow-allround {
       box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.4);
     }
 
     .nav-color {
-      /* background-color: #f6f5f5; */
       background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-      /* background-color: #fbfd8a; */
     }
 
     .box-color {
@@ -21,8 +59,6 @@
     }
 
     .box-atention-color {
-      /* background-image: linear-gradient(60deg, #96deda 0%, #50c9c3 100%); */
-      /* background-image: linear-gradient(-225deg, #20e2d7 0%, #f9fea5 100%); */
       background-image: linear-gradient(
         -225deg,
         #dfffcd 0%,
@@ -32,8 +68,6 @@
     }
 
     .box-atention-color-hover {
-      /* background-image: linear-gradient(60deg, #96deda 0%, #50c9c3 100%); */
-      /* background-image: linear-gradient(-225deg, #20e2d7 0%, #f9fea5 100%); */
       background-image: linear-gradient(
         -225deg,
         #dfffcd 0%,
@@ -48,6 +82,12 @@
 
     .max-h-diary {
       max-height: 550px;
+    }
+
+    .absolute-centered {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
     }
   }
 }
