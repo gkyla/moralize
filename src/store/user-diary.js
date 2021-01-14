@@ -6,7 +6,22 @@ const diary = {
   state: {
     allDiary: [],
     currentDiary: {},
+    currentSearch: null,
     loading: true
+  },
+  getters: {
+    getPinedDiary(state) {
+      return state.allDiary.filter(diary => diary.pin);
+    },
+    searchDiary(state) {
+      if (!state.currentSearch) {
+        return state.allDiary;
+      }
+
+      return state.allDiary.filter(diary =>
+        diary.title.toLowerCase().includes(state.currentSearch.toLowerCase())
+      );
+    }
   },
   mutations: {
     updateAllDiary(state, diary) {
@@ -20,9 +35,27 @@ const diary = {
     },
     setCurrentDiary(state, theDiary) {
       state.currentDiary = theDiary;
+    },
+    setCurrentSearch(state, value) {
+      state.currentSearch = value;
     }
   },
   actions: {
+    async pinDiary({ state }, id) {
+      // Find the diary based on the id
+      const theDiary = state.allDiary.find(diary => diary.id === id);
+
+      // Toggle Pin
+      if (theDiary.pin) {
+        theDiary.pin = false;
+      } else {
+        theDiary.pin = true;
+      }
+
+      // Update on idb
+      await moralizeDb.putItem(CONFIG.DB_KEY_DIARY, { ...theDiary });
+    },
+
     async removeTheDiary(ctx, id) {
       const index = ctx.state.allDiary.findIndex(el => el.id === id);
       ctx.state.allDiary.splice(index, 1);
