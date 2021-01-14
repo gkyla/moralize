@@ -89,10 +89,6 @@ export default {
 </script>
 
 <style>
-.button-handler {
-  @apply my-4 p-7 md:p-10 text-left shadow-md rounded-lg text-gray-700 hover:shadow-xl transition-all;
-}
-
 .ck-editor__editable_inline {
   border-radius: 0 0 10px 10px !important;
   min-height: 300px;

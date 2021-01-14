@@ -1,12 +1,13 @@
 <template>
   <div
     id="card"
-    class="card-diary-style shadow-allround hover:shadow-xl transition-all my-2"
+    class=" shadow-allround hover:shadow-xl transition-all my-2 "
+    :class="[customClass ? customClass : '']"
     :data-type="diary.type"
     :data-id="diary.id"
     @click="openModalWithData"
   >
-    <div id="thumbnail-card" class="w-full relative">
+    <div id="thumbnail-card" class="w-full relative  ">
       <div
         id="location"
         class="absolute bottom-2 left-2 flex items-center button-options rounded-full px-2 bg-gray-200 opacity-80"
@@ -20,7 +21,12 @@
         alt="Thumbnail"
       />
       <div id="card-options" class="absolute top-2 right-0">
-        <button id="pin" class="button-option" @click.stop="pinDiary()">
+        <button
+          id="pin"
+          class="button-option"
+          :class="[isDiaryPined ? 'box-atention-color opacity-100' : '']"
+          @click.stop="pinDiary()"
+        >
           <font-awesome-icon icon="thumbtack" />
         </button>
         <button
@@ -66,15 +72,14 @@
 import { computed, ref } from "vue";
 import DiaryModalHandler from "./DiaryModalHandler.vue";
 import { useStore } from "vuex";
-// import moralizeDb from "../data/idb.js";
-// import CONFIG from "../settings/config.js";
 
 export default {
   components: {
     DiaryModalHandler
   },
   props: {
-    diary: Object
+    diary: Object,
+    customClass: Array
   },
   setup(props) {
     const store = useStore();
@@ -95,14 +100,10 @@ export default {
       props.diary.content.replace(/<\/?[^>]+(>|$)/g, "")
     );
 
+    const isDiaryPined = computed(() => props.diary.pin);
+
     function pinDiary() {
-      // togglePinStatus.value = !togglePinStatus.value;
-      // if (togglePinStatus.value) {
-      //   console.log("vroh");
-      //   store.dispatch("pin/getUserPinedItem", props.diary.id);
-      // } else {
-      //   store.dispatch("pin/removeUserPinedItem", props.diary.id);
-      // }
+      store.dispatch("diary/pinDiary", props.diary.id);
     }
 
     function removeTheDiary(id) {
@@ -117,14 +118,11 @@ export default {
       defaultImg,
       updateStatus,
       parseContent,
-      togglePinStatus
+      togglePinStatus,
+      isDiaryPined
     };
   }
 };
 </script>
 
-<style>
-.card-diary-style {
-  @apply inline-block flex-shrink-0 overflow-hidden bg-white rounded-xl w-44 md:w-56 mr-5 ml-1 cursor-pointer;
-}
-</style>
+<style></style>

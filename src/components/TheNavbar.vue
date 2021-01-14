@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="fixed bottom-0 right-0 w-full md:relative md:h-screen flex items-center p-4 md:flex-col nav-color flex-shrink-0 md:w-56 lg:w-72 "
+    class="fixed  bottom-0 right-0 w-full md:relative md:h-screen flex items-center p-4 md:flex-col nav-color flex-shrink-0 md:w-56 lg:w-72 "
   >
     <user-badge class="hidden md:block"></user-badge>
     <div id="nav-links" class="text-left flex justify-around w-full md:block">
