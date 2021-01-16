@@ -1,7 +1,7 @@
 <template>
   <div
     id="modal-box"
-    class="absolute flex items-center justify-center z-20 top-0 left-0 bottom-0 right-0 bg-gray-400 bg-opacity-50 md:p-4 xl:p-10 "
+    class="fixed flex items-center justify-center z-50 top-0 left-0 bottom-0 right-0 bg-gray-400 bg-opacity-50 md:p-4 xl:p-10 "
     v-if="diaryIsOpened"
   >
     <button
@@ -12,7 +12,7 @@
     </button>
     <div
       id="modal-content"
-      class="relative flex px-2 md:pt-3 pt-10 sm:px-3 items-center flex-col bg-white h-screen w-screen md:w-full md:h-full  shadow-lg sm:rounded-xl overflow-y-auto overflow-x-hidden"
+      class="relative flex px-2 md:pt-3 pt-10 sm:px-3 items-center flex-col bg-white h-full w-screen md:w-full md:h-full  shadow-lg sm:rounded-xl overflow-y-auto overflow-x-hidden"
     >
       <div
         id="modal-info"

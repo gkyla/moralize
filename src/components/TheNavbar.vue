@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="fixed  bottom-0 right-0 w-full md:relative md:h-screen flex items-center p-4 md:flex-col nav-color flex-shrink-0 md:w-56 lg:w-72 "
+    class="fixed z-30 bottom-0 right-0 w-full md:relative md:h-screen flex items-center p-4 md:flex-col nav-color flex-shrink-0 md:w-56 lg:w-72"
   >
     <user-badge class="hidden md:block"></user-badge>
     <div id="nav-links" class="text-left flex justify-around w-full md:block">
@@ -21,9 +21,9 @@
         <font-awesome-icon class="text-2xl" icon="calendar-alt" />
         <p class=" ml-5 hidden md:inline">Event</p>
       </router-link>
-      <router-link to="/achievement" class="nav-link font-bold hidden lg:block">
-        <font-awesome-icon class="text-2xl" icon="trophy" />
-        <p class=" ml-5 hidden md:inline">Achievement</p>
+      <router-link to="/pined" class="nav-link font-bold hidden lg:block">
+        <font-awesome-icon class="text-2xl" icon="thumbtack" />
+        <p class=" ml-5 hidden md:inline">Pined</p>
       </router-link>
     </div>
   </nav>

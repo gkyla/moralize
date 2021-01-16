@@ -1,6 +1,6 @@
 <template>
-  <div id="achievment">
-    <p>From achievment</p>
+  <div id="Pined">
+    <p>From pinedDiary</p>
   </div>
 </template>
 

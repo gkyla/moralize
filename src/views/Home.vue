@@ -49,10 +49,7 @@
               <p class="text-sm mt-1">Event</p>
             </div>
           </div>
-          <!-- Recent Achievement Maybe -->
-          <h1 id="user-data" class="font-bold text-xl lg:text-2xl mt-4">
-            Recent Achievement
-          </h1>
+         
         </div>
       </div>
     </div>

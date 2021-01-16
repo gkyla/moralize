@@ -11,7 +11,7 @@
     }
 
     .card-diary-style-home {
-      @apply text-left inline-block flex-shrink-0 mr-4 md:mr-5 overflow-hidden bg-white rounded-xl w-full xsm:w-48  md:w-56 cursor-pointer;
+      @apply text-left inline-block flex-shrink-0 mr-4 md:mr-5 overflow-hidden bg-white rounded-xl w-48 md:w-56 cursor-pointer;
     }
 
     .card-diary-style-diarynote {
@@ -20,6 +20,10 @@
 
     .title-heading {
       @apply inline-block text-left mt-5 font-bold text-lg bg-gray-100 shadow-lg pl-3 rounded-md;
+    }
+
+    .grid-diary-item:nth-child(1n+2){
+      @apply col-span-2
     }
 
     .button-handler {

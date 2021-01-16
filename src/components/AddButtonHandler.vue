@@ -9,12 +9,12 @@
     <teleport to="#modal">
       <div
         id="modal-box"
-        class="absolute flex items-center justify-center z-20 top-0 left-0 bottom-0 right-0 bg-gray-400 bg-opacity-50 transition-all"
+        class="fixed flex items-center justify-center z-50 top-0 left-0 bottom-0 right-0 bg-gray-400 bg-opacity-50 transition-all"
         v-if="modalOpen"
       >
         <div
           id="modal-content"
-          class="relative flex px-5 items-center flex-col  bg-white h-screen w-screen md:max-w-lg md:m-4 md:h-auto p-14 shadow-lg sm:rounded-xl max-h-full overflow-hidden"
+          class="relative flex px-5 items-center flex-col  bg-white h-full w-screen md:max-w-lg md:m-4 md:h-auto p-14 shadow-lg sm:rounded-xl  overflow-hidden"
         >
           <button
             class="nav-link absolute top-2 bg-gray-600 text-white hover:bg-gray-400 right-2"

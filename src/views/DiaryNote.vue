@@ -1,30 +1,9 @@
 <template>
-  <div class="w-full h-full p-3 sm:p-5 lg:p-7 text-left" id="about">
+  <div
+    class=" w-full max-h-screen p-3 sm:p-5 lg:p-7 text-left overflow-y-auto "
+    id="about"
+  >
     <search-bar @searchItems="searchItems"></search-bar>
-    <section id="pinned-diary" :class="[isUserTyped ? 'hidden' : '']">
-      <div id="title-pinned">
-        <h1 class="title-heading">
-          Pinned Diary
-          <div
-            class="box-atention-color inline-block px-5 py-2 ml-2 rounded-lg"
-          >
-            {{ pinedDiary.length }}
-          </div>
-        </h1>
-      </div>
-      <div
-        class="mt-6 flex flex-wrap w-full xsm:justify-between lg:justify-start transition-all"
-      >
-        <div v-if="diaryState.loading">Loading up data ..</div>
-        <card-diary
-          v-else
-          v-for="diary in pinedDiary"
-          :key="diary.id"
-          :diary="diary"
-          :customClass="['card-diary-style-diarynote']"
-        ></card-diary>
-      </div>
-    </section>
     <section id="list-diary">
       <div id="title">
         <h1 class="title-heading bg-gray-800">
@@ -36,16 +15,14 @@
           </div>
         </h1>
       </div>
-      <div
-        class="mt-6 flex flex-wrap w-full xsm:justify-between lg:justify-start"
-      >
+      <div class="mt-6 grid grid-cols-4 gap-7">
         <div v-if="diaryState.loading">Loading up data ..</div>
         <card-diary
           v-else
           v-for="diary in getDiary"
           :key="diary.id"
           :diary="diary"
-          :customClass="['card-diary-style-diarynote']"
+          :customClass="['grid-diary-item']"
         ></card-diary>
       </div>
     </section>
@@ -53,30 +30,32 @@
 </template>
 
 <script>
-import { computed, ref } from "vue";
-import CardDiary from "../components/CardDiary.vue";
-import { useStore } from "vuex";
-import SearchBar from "../components/SearchBar.vue";
+import { computed, ref } from 'vue';
+import CardDiary from '../components/CardDiary.vue';
+import { useStore } from 'vuex';
+import SearchBar from '../components/SearchBar.vue';
+// import ItemContainer from "../components/ItemContainer.vue";
 
 export default {
   components: {
     CardDiary,
-    SearchBar
+    SearchBar,
+    // ItemContainer
   },
   setup() {
     const store = useStore();
     const diaryState = computed(() => store.state.diary);
-    const pinedDiary = computed(() => store.getters["diary/getPinedDiary"]);
-    const getDiary = computed(() => store.getters["diary/searchDiary"]);
-    const isUserTyped = ref("");
+    // const pinedDiary = computed(() => store.getters["diary/getPinedDiary"]);
+    const getDiary = computed(() => store.getters['diary/searchDiary']);
+    const isUserTyped = ref('');
 
     function searchItems(value) {
       isUserTyped.value = value;
-      store.commit("diary/setCurrentSearch", value);
+      store.commit('diary/setCurrentSearch', value);
     }
 
     const defineTitle = computed(() => {
-      return isUserTyped.value ? "Serach Result" : "List Diary";
+      return isUserTyped.value ? 'Serach Result' : 'List Diary';
     });
 
     const defineTitleAmount = computed(() => {
@@ -90,11 +69,11 @@ export default {
       defineTitle,
       defineTitleAmount,
       diaryState,
-      pinedDiary,
+      // pinedDiary
       isUserTyped,
-      getDiary
+      getDiary,
     };
-  }
+  },
 };
 </script>
 

@@ -178,6 +178,44 @@
           </form>
         </div>
       </div> -->
+
+      <!-- Backup -->
+
+            <!-- <section id="pinned-diary" :class="[isUserTyped ? 'hidden' : '']">
+      <div id="title-pinned">
+        <h1 class="title-heading">
+          Pinned Diary
+          <div
+            class="box-atention-color inline-block px-5 py-2 ml-2 rounded-lg"
+          >
+            {{ pinedDiary.length }}
+          </div>
+        </h1>
+      </div>
+      <item-container>
+        <div v-if="diaryState.loading">Loading up data ..</div>
+        <card-diary
+          v-else
+          v-for="diary in pinedDiary"
+          :key="diary.id"
+          :diary="diary"
+          :customClass="['card-diary-style-home']"
+        ></card-diary>
+      </item-container>
+    </section> -->
+<!-- 
+          <div
+        class="mt-6 flex flex-wrap w-full xsm:justify-between lg:justify-start"
+      >
+        <div v-if="diaryState.loading">Loading up data ..</div>
+        <card-diary
+          v-else
+          v-for="diary in getDiary"
+          :key="diary.id"
+          :diary="diary"
+          :customClass="['card-diary-style-diarynote']"
+        ></card-diary>
+      </div> -->
 </template>
 
 <script>

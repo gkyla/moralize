@@ -21,7 +21,7 @@
     </div>
     <router-link
       to="/user"
-      class="nav-link mb-16 py-2 md:py-4 flex items-center px-4 md:px-6 rounded-lg"
+      class="nav-link py-2 md:py-4 flex items-center px-4 md:px-6 rounded-lg"
     >
       <font-awesome-icon icon="cog"></font-awesome-icon>
       <p class="ml-3 font-bold text-xl">Edit Profile</p>

@@ -1,7 +1,7 @@
 <template>
   <div
     id="card"
-    class=" shadow-allround hover:shadow-xl transition-all my-2 "
+    class=" shadow-allround hover:shadow-xl transition-all my-2 bg-white"
     :class="[customClass ? customClass : '']"
     :data-type="diary.type"
     :data-id="diary.id"
