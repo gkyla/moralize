@@ -22,9 +22,13 @@
       @apply inline-block text-left mt-5 font-bold text-lg bg-gray-100 shadow-lg pl-3 rounded-md;
     }
 
-    .grid-diary-item:nth-child(1n+2){
-      @apply col-span-2
+    .grid-diary-item {
+      @apply rounded-xl overflow-hidden  bg-white cursor-pointer;
     }
+
+    /* .grid-diary-item:nth-child(1n + 0) {
+      @apply col-span-2;
+    } */
 
     .button-handler {
       @apply my-4 p-7 md:p-10 text-left shadow-md rounded-lg text-gray-700 hover:shadow-xl transition-all;
