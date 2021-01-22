@@ -1,7 +1,7 @@
 <template>
   <div
     id="home"
-    class="w-full h-full text-left p-3 sm:p-5 lg:p-7 overflow-y-auto "
+    class="w-full m-auto max-h-screen text-left p-3 sm:p-5 lg:py-7 lg:px-14 overflow-y-auto "
   >
     <div id="group-top" class="xl:flex xl:gap-5 ">
       <div
@@ -10,7 +10,7 @@
       >
         <div class="w-full h-full">
           <h1 class="font-bold text-xl sm:text-2xl md:text-4xl mb-2">
-            Good Morning, {{ user.userName }}
+            Good Morning
           </h1>
           <span class="text-sm sm:text-lg">
             {{ greetings ? greetings : "Setting up time .." }}</span
@@ -49,37 +49,137 @@
               <p class="text-sm mt-1">Event</p>
             </div>
           </div>
-         
         </div>
       </div>
     </div>
-    <item-container name="Recent Diary">
-      <div v-if="diaryState.loading">Loading up data ..</div>
-      <div v-else-if="isDiaryEmpty" class=" px-14 py-28 rounded-lg border">
-        No Diary Found
+
+    <div
+      class="grid grid-cols-1 xl:grid-cols-2 gap-5 shadow-md bg-white rounded-xl bg-opacity-70 lg:p-5 lg:my-8"
+    >
+      <div
+        class="grid grid-cols-1 lg:grid-cols-2 grid-rows-2  gap-4 col-span-1"
+      >
+        <div
+          name="Recent Diary"
+          class=" rounded-xl mt-5 grid grid-cols-1 gap-4 col-span-2 "
+        >
+          <h1 class="font-bold text-lg">Your Recent Diary</h1>
+          <div class="grid grid-cols-1  xsm:grid-cols-2 gap-5">
+            <div v-if="diaryState.loading">Loading up data ..</div>
+            <div v-else-if="isDiaryEmpty">
+              <placeholder-card></placeholder-card>
+            </div>
+            <card-diary
+              v-else
+              v-for="diary in getFirstTwoLast(diaryState.allDiary)"
+              :diary="diary"
+              :key="diary.id"
+              :customClass="['grid-diary-item']"
+            />
+          </div>
+        </div>
+        <div class=" col-span-2">
+          <div>
+            <h1 class="font-bold text-lg mb-5 ">Most Active Diary</h1>
+            <card-diary
+              v-if="!diaryState.loading && !isDiaryEmpty"
+              :diary="diaryState.allDiary[diaryState.allDiary.length - 1]"
+              :customClass="['grid-diary-item']"
+            />
+            <placeholder-card v-if="isDiaryEmpty"></placeholder-card>
+          </div>
+        </div>
       </div>
-      <card-diary
-        v-else
-        v-for="diary in diaryState.allDiary"
-        :diary="diary"
-        :key="diary.id"
-        :customClass="['card-diary-style-home']"
-      />
-    </item-container>
-    <item-container name="Recent Target">
-      <card-target></card-target>
-      <card-target></card-target>
-    </item-container>
-    <item-container name="Finished Target">
-      <card-target :done="true"></card-target>
-    </item-container>
+      <div class="flex justify-center items-center ">
+        <div class="bg-white shadow-xl p-10">
+          <h1
+            class="font-bold text-center my-5 text-xl py-3 px-5 rounded-full box-atention-color text-gray-600"
+          >
+            Diary Stats
+          </h1>
+          <p class="stats-information">
+            First Time Created On :
+            <span class="stats-value"> 12 Januari 2020</span>
+          </p>
+          <p class="stats-information">
+            Total Of pined Diary : <span class="stats-value"> 10 </span>
+          </p>
+          <p class="stats-information">
+            Recent Created : 20 June 2021
+          </p>
+          <p class="stats-information">Total Diary : 40</p>
+          <p class="stats-information">
+            Total of Various Location : 11 Location
+          </p>
+          <p class="stats-information">Total of tag : 13 Tag</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Target -->
+    <div
+      class="grid grid-cols-1 xl:grid-cols-2 gap-5 shadow-md bg-white rounded-xl bg-opacity-70 lg:p-5 lg:my-8"
+    >
+      <div
+        class="grid grid-cols-1 lg:grid-cols-2 grid-rows-2  gap-4 col-span-1"
+      >
+        <div class=" rounded-xl mt-5 grid grid-cols-1 gap-4 col-span-2 ">
+          <h1 class="font-bold text-lg">Your Recent Target</h1>
+          <div class="grid grid-cols-1  xsm:grid-cols-2 gap-5">
+            <div v-if="diaryState.loading">Loading up data ..</div>
+            <div v-else-if="isDiaryEmpty">
+              <placeholder-card></placeholder-card>
+            </div>
+            <card-diary
+              v-else
+              v-for="diary in getFirstTwoLast(diaryState.allDiary)"
+              :diary="diary"
+              :key="diary.id"
+              :customClass="['grid-diary-item']"
+            />
+          </div>
+        </div>
+        <div class=" col-span-2">
+          <div>
+            <h1 class="font-bold text-lg mb-5 ">Most Active Diary</h1>
+            <card-diary
+              v-if="!diaryState.loading && !isDiaryEmpty"
+              :diary="diaryState.allDiary[diaryState.allDiary.length - 1]"
+              :customClass="['grid-diary-item']"
+            />
+            <placeholder-card v-if="isDiaryEmpty"></placeholder-card>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-center items-center ">
+        <div class="bg-white shadow-xl p-10">
+          <h1
+            class="font-bold text-center my-5 text-xl py-3 px-5 rounded-full box-atention-color text-gray-600"
+          >
+            Target Stats
+          </h1>
+          <p class="stats-information">
+            First Time Created On :
+            <span class="stats-value"> 12 Januari 2020</span>
+          </p>
+          <p class="stats-information">
+            Total Target : <span class="stats-value"> 10 </span>
+          </p>
+          <p class="stats-information">
+            Recent Created : 20 June 2021
+          </p>
+          <p class="stats-information">Total Finished Target : 40</p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import CardDiary from "../components/CardDiary.vue";
-import CardTarget from "../components/CardTarget.vue";
-import itemContainer from "../components/ItemContainer.vue";
+// import CardTarget from "../components/CardTarget.vue";
+import PlaceholderCard from "../components/PlaceholderCard.vue";
+// import itemContainer from "../components/ItemContainer.vue";
 
 import { computed, ref } from "vue";
 import { useStore } from "vuex";
@@ -90,8 +190,9 @@ export default {
   name: "Home",
   components: {
     CardDiary,
-    CardTarget,
-    itemContainer
+    // CardTarget,
+    PlaceholderCard
+    // itemContainer
   },
 
   setup() {
@@ -109,6 +210,17 @@ export default {
       }
     });
 
+    function getFirstTwoLast(theArray) {
+      const last = theArray.length - 1;
+      const beforeLast = theArray.length - 2;
+
+      if (theArray.length >= 2) {
+        return [theArray[last], theArray[beforeLast]];
+      } else {
+        return [theArray[last]];
+      }
+    }
+
     const greetings = ref(null);
 
     // Update every second
@@ -120,6 +232,7 @@ export default {
     return {
       user,
       greetings,
+      getFirstTwoLast,
       // pinState
       isDiaryEmpty,
       diaryState
