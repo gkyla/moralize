@@ -4,18 +4,14 @@
     id="about"
   >
     <search-bar @searchItems="searchItems"></search-bar>
-    <section id="list-diary">
-      <div id="title">
-        <h1 class="title-heading bg-gray-800">
-          {{ defineTitle }}
-          <div
-            class="box-atention-color inline-block px-5 py-2 ml-2 rounded-lg"
-          >
-            {{ defineTitleAmount }}
-          </div>
-        </h1>
-      </div>
-      <div class="mt-6 grid grid-cols-4 gap-7">
+    <section
+      id="list-diary"
+      class=" bg-white rounded-xl bg-opacity-70 shadow-allround lg:p-5 p-2 lg:my-8"
+    >
+      <the-title :title="defineTitle" :amount="defineTitleAmount"></the-title>
+      <div
+        class="mt-6 grid grid-cols-1 xsm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3"
+      >
         <div v-if="diaryState.loading">Loading up data ..</div>
         <card-diary
           v-else
@@ -30,32 +26,34 @@
 </template>
 
 <script>
-import { computed, ref } from 'vue';
-import CardDiary from '../components/CardDiary.vue';
-import { useStore } from 'vuex';
-import SearchBar from '../components/SearchBar.vue';
+import { computed, ref } from "vue";
+import CardDiary from "../components/CardDiary.vue";
+import { useStore } from "vuex";
+import SearchBar from "../components/SearchBar.vue";
+import TheTitle from "../components/TheTitle.vue";
 // import ItemContainer from "../components/ItemContainer.vue";
 
 export default {
   components: {
     CardDiary,
     SearchBar,
+    TheTitle
     // ItemContainer
   },
   setup() {
     const store = useStore();
     const diaryState = computed(() => store.state.diary);
     // const pinedDiary = computed(() => store.getters["diary/getPinedDiary"]);
-    const getDiary = computed(() => store.getters['diary/searchDiary']);
-    const isUserTyped = ref('');
+    const getDiary = computed(() => store.getters["diary/searchDiary"]);
+    const isUserTyped = ref("");
 
     function searchItems(value) {
       isUserTyped.value = value;
-      store.commit('diary/setCurrentSearch', value);
+      store.commit("diary/setCurrentSearch", value);
     }
 
     const defineTitle = computed(() => {
-      return isUserTyped.value ? 'Serach Result' : 'List Diary';
+      return isUserTyped.value ? "Search Result" : "List Diary";
     });
 
     const defineTitleAmount = computed(() => {
@@ -71,9 +69,9 @@ export default {
       diaryState,
       // pinedDiary
       isUserTyped,
-      getDiary,
+      getDiary
     };
-  },
+  }
 };
 </script>
 
