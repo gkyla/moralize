@@ -10,10 +10,10 @@
     <div id="thumbnail-card" class="w-full relative  ">
       <div
         id="location"
-        class="absolute bottom-2 left-2 flex items-center button-options rounded-full px-2 bg-gray-200 opacity-80"
+        class="absolute bottom-2 left-2 flex items-center button-options rounded-full px-2 bg-gray-200 opacity-70"
       >
         <font-awesome-icon icon="map-marker-alt" class="mr-2" />
-        <p>{{ diary.location }}</p>
+        <p>{{ diary.location || "Somewhere" }}</p>
       </div>
       <img
         :src="diary.assets || defaultImg"
@@ -38,7 +38,7 @@
         </button>
       </div>
     </div>
-    <div id="content" class="px-2 py-4">
+    <div id="content" class="px-2 py-4 ">
       <h1 class="font-bold text-lg md:text-2xl truncate">{{ diary.title }}</h1>
       <p class="text-md py-2 truncate">
         {{ parseContent }}
@@ -46,10 +46,10 @@
     </div>
     <div
       id="card-info"
-      class="border-t px-2 py-2 flex items-center justify-center text-gray-400"
+      class="border-t px-2 py-2 flex items-center justify-center text-gray-400 "
     >
       <div id="info-label">
-        <span class="text-sm ">#{{ diary.tag }}</span>
+        <span class="text-sm ">#{{ diary.tag || "Untitled" }}</span>
       </div>
       <div id="info-date" class="ml-auto">
         <span class="ml-2 text-sm ">{{ diary.createdOn }}</span>
@@ -96,8 +96,10 @@ export default {
       modalOpened.value = true;
     }
 
-    const parseContent = computed(() =>
-      props.diary.content.replace(/<\/?[^>]+(>|$)/g, "")
+    const parseContent = computed(
+      () =>
+        props.diary.content.replace(/<\/?[^>]+(>|$)/g, "") ||
+        "Rain is calming..."
     );
 
     const isDiaryPined = computed(() => props.diary.pin);

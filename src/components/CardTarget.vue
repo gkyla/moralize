@@ -1,32 +1,45 @@
 <template>
   <div
     id="card"
-    class="relative block flex-shrink-0 mr-7 shadow-allround border-3 bg-white rounded-lg w-56 my-2 ml-1"
+    class=" shadow-allround hover:shadow-xl transition-all my-2 bg-white"
   >
-    <div id="content" class="px-2 py-4 relative">
+    <div id="thumbnail-card" class="w-full relative  ">
       <div
-        id="status"
-        class="inline-block p-2 bg-white rounded-2xl border-4 absolute -top-5 -right-3"
-        :class="[done ? 'border-green-300' : 'border-red-400']"
+        id="location"
+        class="absolute bottom-2 left-2 flex items-center button-options rounded-full px-2 bg-gray-200 opacity-70"
       >
-        <font-awesome-icon
-          :icon="done ? 'check' : 'percent'"
-          class="border-3 border-white  "
-        />
+        <font-awesome-icon icon="map-marker-alt" class="mr-2" />
+        <p>ASAS</p>
       </div>
-      <div id="target-title" class="mb-5">
-        <h1 class="font-bold text-md">Finishing Home Work</h1>
+      <img
+        src="../assets/card-thumbnail.jpg"
+        class="overflow-hidden block h-36 max-h-36 w-full object-center object-cover"
+        alt="Thumbnail"
+      />
+      <div id="card-options" class="absolute top-2 right-0">
+        <button id="pin" class="button-option">
+          <font-awesome-icon icon="thumbtack" />
+        </button>
+        <button id="pin" class="button-option">
+          <font-awesome-icon icon="trash" />
+        </button>
       </div>
-      <div id="target-content-inner">
-        <h1 class=" text-sm">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga,
-          officia!
-        </h1>
+    </div>
+    <div id="content" class="px-2 py-4 ">
+      <h1 class="font-bold text-lg md:text-2xl truncate">Working</h1>
+      <p class="text-md py-2 truncate">
+        Bro
+      </p>
+    </div>
+    <div
+      id="card-info"
+      class="border-t px-2 py-2 flex items-center justify-center text-gray-400 "
+    >
+      <div id="info-label">
+        <span class="text-sm ">#Workhard</span>
       </div>
-      <div id="target-content-created" class="mt-2">
-        <h1 class="text-sm font-bold">
-          {{ done ? "Finished" : "12-05-2015" }}
-        </h1>
+      <div id="info-date" class="ml-auto">
+        <span class="ml-2 text-sm ">12 Januari 2019</span>
       </div>
     </div>
   </div>

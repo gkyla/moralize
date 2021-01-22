@@ -2,7 +2,7 @@
   <nav
     class="fixed z-30 bottom-0 right-0 w-full md:relative md:h-screen flex items-center p-4 md:flex-col nav-color flex-shrink-0 md:w-56 lg:w-72"
   >
-    <user-badge class="hidden md:block"></user-badge>
+    <!-- <user-badge class="hidden md:block"></user-badge> -->
     <div id="nav-links" class="text-left flex justify-around w-full md:block">
       <router-link to="/" class="nav-link font-bold">
         <font-awesome-icon class="text-2xl" icon="home" />
@@ -31,12 +31,12 @@
 
 <script>
 import { useRouter } from "vue-router";
-import UserBadge from "./UserBadge.vue";
+// import UserBadge from "./UserBadge.vue";
 import AddButtonHandler from "./AddButtonHandler.vue";
 
 export default {
   components: {
-    UserBadge,
+    // UserBadge,
     AddButtonHandler
   },
   props: {

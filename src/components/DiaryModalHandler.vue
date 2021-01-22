@@ -200,12 +200,13 @@ export default {
       id: generateId(),
       type: "diary",
       title: "",
-      content: "<p>Rain is calming...</p>",
+      content: "",
       tag: "",
       location: "",
       pin: false,
       mood: "Happy",
       assets: "",
+      edited: 1,
       createdOn: new Date().toDateString()
     });
 

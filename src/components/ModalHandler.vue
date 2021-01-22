@@ -179,9 +179,9 @@
         </div>
       </div> -->
 
-      <!-- Backup -->
+  <!-- Backup -->
 
-            <!-- <section id="pinned-diary" :class="[isUserTyped ? 'hidden' : '']">
+  <!-- <section id="pinned-diary" :class="[isUserTyped ? 'hidden' : '']">
       <div id="title-pinned">
         <h1 class="title-heading">
           Pinned Diary
@@ -203,7 +203,7 @@
         ></card-diary>
       </item-container>
     </section> -->
-<!-- 
+  <!-- 
           <div
         class="mt-6 flex flex-wrap w-full xsm:justify-between lg:justify-start"
       >
@@ -216,6 +216,42 @@
           :customClass="['card-diary-style-diarynote']"
         ></card-diary>
       </div> -->
+
+  <!-- Backup Card Target -->
+
+  <!-- <div
+    id="card"
+    class=" inline-block mr-7 border-3 shadow-allround bg-white rounded-lg w-full h-full  "
+  >
+    <div id="content" class=" relative ">
+      <div
+        id="status"
+        class="inline-block p-2 bg-white rounded-2xl border-4 absolute -top-5 -right-3"
+        :class="[done ? 'border-green-300' : 'border-red-400']"
+      >
+        <font-awesome-icon
+          :icon="done ? 'check' : 'percent'"
+          class="border-3 border-white  "
+        />
+      </div>
+      <div id="target-title" class="box-atention-color p-5 ">
+        <h1 class="font-bold text-md">Finishing Home Work</h1>
+      </div>
+      <div class="p-2">
+        <div id="target-content-inner" class="">
+          <h1 class=" text-sm">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga,
+            officia!
+          </h1>
+        </div>
+        <div id="target-content-created" class="mt-2">
+          <h1 class="text-sm font-bold">
+            {{ done ? "Finished" : "12-05-2015" }}
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div> -->
 </template>
 
 <script>
@@ -223,9 +259,7 @@ export default {
   props: {
     name: String
   },
-  setup(){
-    const 
-  }
+  setup() {}
 };
 </script>
 
