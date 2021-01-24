@@ -1,5 +1,5 @@
 <template>
-  <div id="search-bar" class="relative lg:max-w-xl">
+  <div id="search-bar" class="relative w-full flex items-center">
     <input
       type="text"
       class="p-4 w-full  border rounded-lg shadow-md "
