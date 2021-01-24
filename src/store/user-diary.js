@@ -21,6 +21,15 @@ const diary = {
       return state.allDiary.filter(diary =>
         diary.title.toLowerCase().includes(state.currentSearch.toLowerCase())
       );
+    },
+    allMood(state) {
+      return new Set(state.allDiary.map(diary => diary.mood));
+    },
+    allTag(state) {
+      return new Set(state.allDiary.map(diary => diary.tag));
+    },
+    allLocation(state) {
+      return new Set(state.allDiary.map(diary => diary.location));
     }
   },
   mutations: {
