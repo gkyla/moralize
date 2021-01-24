@@ -15,13 +15,9 @@
 </template>
 
 <script>
-// import { reactive } from "vue";
 import { useStore } from "vuex";
 import MoralizeLayout from "./components/MoralizeLayout.vue";
 import TheNavbar from "./components/TheNavbar.vue";
-
-// import moralizeDb from "./data/idb";
-// import CONFIG from "./settings/config";
 
 export default {
   components: {
@@ -31,9 +27,6 @@ export default {
   setup() {
     const store = useStore();
     store.dispatch("diary/getAllDiary");
-    // call the value
-
-    // initGetAllUserDataDB();
   }
 };
 </script>
