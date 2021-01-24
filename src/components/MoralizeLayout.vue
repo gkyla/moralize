@@ -1,14 +1,11 @@
 <template>
   <div
     id="template-wrapper"
-    class="flex flex-column  md:flex-row overflow-hidden"
+    class="flex flex-col-reverse w-full h-screen md:flex-row "
   >
     <slot name="navbar"></slot>
 
-    <main
-      id="main"
-      class="fixed top-0 md:static w-full min-h-screen pb-20 md:pb-0 overflow-y-auto "
-    >
+    <main id="main" class="w-full h-full overflow-y-auto max-screen-main">
       <slot name="main"></slot>
 
       <add-button-handler class="hidden md:block fixed bottom-3 right-10" />
