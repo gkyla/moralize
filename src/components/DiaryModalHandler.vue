@@ -1,27 +1,29 @@
 <template>
   <div
     id="modal-box"
-    class="fixed flex items-center justify-center z-50 top-0 left-0 bottom-0 right-0 bg-gray-400 bg-opacity-50 md:p-4 xl:p-10 "
+    class="fixed flex items-center justify-center z-50 top-0 left-0 bottom-0 right-0 bg-gray-400 bg-opacity-50 md:p-4 p-2 xl:px-72 xl:py-16"
     v-if="diaryIsOpened"
   >
-    <button
-      class="nav-link absolute  bg-gray-600 text-white hover:bg-gray-400 top-2 right-4 md:top-6 md:right-6 xl:right-12 xl:top-12 z-20"
-      @click="updateStatus"
-    >
-      <font-awesome-icon class="text-2xl text-white" icon="times" />
-    </button>
     <div
       id="modal-content"
-      class="relative flex px-2 md:pt-3 pt-10 sm:px-3 items-center flex-col bg-white h-full w-screen md:w-full md:h-full  shadow-lg sm:rounded-xl overflow-y-auto overflow-x-hidden"
+      class="relative block bg-white w-screen h-full max-h-full shadow-lg rounded-xl overflow-hidden pb-20"
     >
       <div
-        id="modal-info"
-        class=" md:mt-0 w-full justify-center flex flex-col lg:p-5"
+        id="window-control"
+        class="box-atention-color w-full h-auto p-2 flex"
       >
-        <form
-          id="diary-note-text-handler flex flex-col"
-          @submit.prevent="submitDiary"
+        <button
+          class="nav-link mb-0 bg-gray-600 text-white hover:bg-gray-400 ml-auto"
+          @click="updateStatus"
         >
+          <font-awesome-icon class="text-2xl text-white" icon="times" />
+        </button>
+      </div>
+      <div
+        id="modal-info"
+        class="md:mt-0 w-full h-full overflow-y-auto overflow-x-hidden px-5 py-2"
+      >
+        <form id="diary-note-text-handler" @submit.prevent="submitDiary">
           <div id="title-container">
             <label for="title" class="font-bold flex items-center py-3"
               >Title</label
@@ -44,7 +46,7 @@
             >
               <label
                 for="file"
-                class="cursor-pointer text-gray-500 w-full h-full flex flex-col text-center items-center justify-center p-20 "
+                class="cursor-pointer bg-white text-gray-500 w-full h-full flex flex-col text-center items-center justify-center p-20 "
                 v-if="!isImage"
               >
                 <font-awesome-icon icon="image" class="text-5xl" />
@@ -147,7 +149,7 @@
           <div id="button-submit" class="flex">
             <button
               type="submit"
-              class="box-atention-color shadow-lg font-bold px-2 py-2 my-4 ml-auto rounded-lg"
+              class="box-atention-color shadow-lg font-bold px-2 py-2 my-4 ml-auto rounded-lg justify-self-start"
             >
               Save Diary
             </button>
@@ -250,6 +252,14 @@ export default {
       const addData = { ...diaryData.value };
       if (addData.title === "") {
         addData.title = `Untitled ${addData.id}`;
+      }
+
+      if (addData.location === "") {
+        addData.location = "Unknown";
+      }
+
+      if (addData.tag === "") {
+        addData.tag = "Untitled";
       }
       store.dispatch("diary/saveTheDiary", addData);
       updateStatus();
