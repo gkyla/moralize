@@ -1,7 +1,7 @@
 <template>
   <div
     id="card"
-    class=" shadow-allround hover:shadow-xl transition-all my-2 bg-white"
+    class=" shadow-allround hover:shadow-xl transition-all my-2 bg-white p-2"
     :class="[customClass ? customClass : '']"
     :data-type="diary.type"
     :data-id="diary.id"
@@ -17,7 +17,7 @@
       </div>
       <img
         :src="diary.assets || defaultImg"
-        class="overflow-hidden block h-36 max-h-36 w-full object-center object-cover"
+        class="overflow-hidden block h-36 max-h-36 w-full object-center object-cover rounded-lg"
         alt="Thumbnail"
       />
       <div id="card-options" class="absolute top-2 right-0">
@@ -49,7 +49,7 @@
       class="border-t px-2 py-2 flex items-center justify-center text-gray-400 "
     >
       <div id="info-label">
-        <span class="text-sm ">#{{ diary.tag || "Untitled" }}</span>
+        <p class="tag">#{{ diary.tag || "Untitled" }}</p>
       </div>
       <div id="info-date" class="ml-auto">
         <span class="ml-2 text-sm ">{{ diary.createdOn }}</span>
@@ -58,13 +58,15 @@
   </div>
 
   <teleport to="#modal">
-    <diary-modal-handler
-      v-if="modalOpened"
-      :isOpened="modalOpened"
-      :id="diary.id"
-      :type="diary.type"
-      @updateStatus="updateStatus"
-    />
+    <transition name="fade" mode="out-in">
+      <diary-modal-handler
+        v-if="modalOpened"
+        :isOpened="modalOpened"
+        :id="diary.id"
+        :type="diary.type"
+        @updateStatus="updateStatus"
+      />
+    </transition>
   </teleport>
 </template>
 
