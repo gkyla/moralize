@@ -10,6 +10,11 @@
       @apply w-full h-full text-left p-3 sm:p-5 lg:p-7 overflow-y-auto;
     }
 
+    .container-page {
+      @apply w-full m-auto text-left p-3 sm:p-5 lg:py-7 lg:px-14 overflow-y-auto;
+      max-width: 1500px;
+    }
+
     .card-diary-style-home {
       @apply text-left inline-block flex-shrink-0 mr-4 md:mr-5 overflow-hidden bg-white rounded-xl w-48 md:w-56 cursor-pointer;
     }
@@ -22,8 +27,17 @@
       @apply inline-block text-left mt-5 font-bold text-lg bg-gray-100 shadow-lg pl-3 rounded-md;
     }
 
+    .custom-select {
+      @apply p-3 rounded-lg font-bold text-lg box-atention-color;
+      max-width: 110px;
+    }
+
     .shadow-allround {
       box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.4);
+    }
+
+    .filter-sort-btn {
+      @apply font-bold text-lg bg-gray-100 p-2 rounded-lg mr-3 box-atention-color shadow-md;
     }
 
     .stats-information {
@@ -34,9 +48,21 @@
       @apply rounded-xl overflow-hidden  bg-white cursor-pointer;
     }
 
-    /* .grid-diary-item:nth-child(1n + 0) {
-      @apply col-span-2;
-    } */
+    .target-color {
+      background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+    }
+
+    .tag {
+      @apply text-sm truncate max-width-tag-80 lg:max-width-tag-120;
+    }
+
+    .max-width-tag-80 {
+      max-width: 80px;
+    }
+
+    .max-width-tag-120 {
+      max-width: 120px;
+    }
 
     .button-handler {
       @apply my-4 p-7 md:p-10 text-left shadow-md rounded-lg text-gray-700 hover:shadow-xl transition-all;
@@ -100,6 +126,10 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
+    }
+
+    .max-screen-main {
+      max-width: 1920px;
     }
   }
 }
