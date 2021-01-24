@@ -1,19 +1,22 @@
 <template>
   <div
     id="card"
-    class=" shadow-allround hover:shadow-xl transition-all my-2 bg-white"
+    class="rounded-lg overflow-hidden shadow-allround hover:shadow-xl transition-all my-2 p-2 bg-white"
   >
-    <div id="thumbnail-card" class="w-full relative  ">
+    <div id="thumbnail-card" class="w-full relative">
       <div
-        id="location"
-        class="absolute bottom-2 left-2 flex items-center button-options rounded-full px-2 bg-gray-200 opacity-70"
+        class="target-color h-36 max-h-36 flex justify-center items-center rounded-lg"
+        v-if="!done"
       >
-        <font-awesome-icon icon="map-marker-alt" class="mr-2" />
-        <p>ASAS</p>
+        <h1 class="bg-white opacity-60 py-2 px-5 rounded-full mt-5">
+          On Progress ...
+        </h1>
       </div>
+
       <img
+        v-if="done"
         src="../assets/card-thumbnail.jpg"
-        class="overflow-hidden block h-36 max-h-36 w-full object-center object-cover"
+        class="overflow-hidden block h-36 max-h-36 w-full object-center object-cover rounded-lg"
         alt="Thumbnail"
       />
       <div id="card-options" class="absolute top-2 right-0">
@@ -25,22 +28,17 @@
         </button>
       </div>
     </div>
-    <div id="content" class="px-2 py-4 ">
+    <div id="content" class="px-2 py-4 flex flex-col">
       <h1 class="font-bold text-lg md:text-2xl truncate">Working</h1>
       <p class="text-md py-2 truncate">
         Bro
       </p>
-    </div>
-    <div
-      id="card-info"
-      class="border-t px-2 py-2 flex items-center justify-center text-gray-400 "
-    >
-      <div id="info-label">
-        <span class="text-sm ">#Workhard</span>
-      </div>
-      <div id="info-date" class="ml-auto">
-        <span class="ml-2 text-sm ">12 Januari 2019</span>
-      </div>
+      <button
+        class="ml-auto  py-2 px-5 rounded-full  font-bold"
+        :class="[done ? 'box-atention-color' : 'target-color']"
+      >
+        {{ done ? "Finished" : "Verify" }}
+      </button>
     </div>
   </div>
 </template>
