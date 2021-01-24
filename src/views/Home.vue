@@ -1,8 +1,5 @@
 <template>
-  <div
-    id="home"
-    class="w-full m-auto max-h-screen text-left p-3 sm:p-5 lg:py-7 lg:px-14 overflow-y-auto "
-  >
+  <div id="home" class="container-page">
     <div id="group-top" class="xl:flex xl:gap-5 ">
       <div
         id="welcome"
@@ -54,17 +51,15 @@
     </div>
 
     <div
-      class="grid grid-cols-1 xl:grid-cols-2 gap-5 shadow-md bg-white rounded-xl bg-opacity-70 lg:p-5 lg:my-8"
+      class="grid grid-cols-1 xl:grid-cols-2 gap-5 lg:shadow-md bg-white rounded-xl bg-opacity-70 lg:p-5 lg:my-8"
     >
-      <div
-        class="grid grid-cols-1 lg:grid-cols-2 grid-rows-2  gap-4 col-span-1"
-      >
+      <div class="grid grid-cols-1 lg:grid-cols-2   gap-4 col-span-1">
         <div
           name="Recent Diary"
           class=" rounded-xl mt-5 grid grid-cols-1 gap-4 col-span-2 "
         >
           <h1 class="font-bold text-lg">Your Recent Diary</h1>
-          <div class="grid grid-cols-1  xsm:grid-cols-2 gap-5">
+          <div class="grid grid-cols-1  bsm:grid-cols-2 gap-5">
             <div v-if="diaryState.loading">Loading up data ..</div>
             <div v-else-if="isDiaryEmpty">
               <placeholder-card></placeholder-card>
@@ -78,19 +73,17 @@
             />
           </div>
         </div>
-        <div class=" col-span-2">
-          <div>
-            <h1 class="font-bold text-lg mb-5 ">Most Active Diary</h1>
-            <card-diary
-              v-if="!diaryState.loading && !isDiaryEmpty"
-              :diary="diaryState.allDiary[diaryState.allDiary.length - 1]"
-              :customClass="['grid-diary-item']"
-            />
-            <placeholder-card v-if="isDiaryEmpty"></placeholder-card>
-          </div>
+        <div class="col-span-2">
+          <h1 class="font-bold text-lg mb-5 ">Most Active Diary</h1>
+          <card-diary
+            v-if="!diaryState.loading && !isDiaryEmpty"
+            :diary="diaryState.allDiary[diaryState.allDiary.length - 1]"
+            :customClass="['grid-diary-item']"
+          />
+          <placeholder-card v-if="isDiaryEmpty"></placeholder-card>
         </div>
       </div>
-      <div class="flex justify-center items-center ">
+      <div class="flex p-2 justify-center items-center">
         <div class="bg-white shadow-xl p-10">
           <h1
             class="font-bold text-center my-5 text-xl py-3 px-5 rounded-full box-atention-color text-gray-600"
@@ -118,43 +111,26 @@
 
     <!-- Target -->
     <div
-      class="grid grid-cols-1 xl:grid-cols-2 gap-5 shadow-md bg-white rounded-xl bg-opacity-70 lg:p-5 lg:my-8"
+      class="grid grid-cols-1 xl:grid-cols-2 gap-5 lg:shadow-md bg-white rounded-xl bg-opacity-70 lg:p-5 lg:my-8"
     >
-      <div
-        class="grid grid-cols-1 lg:grid-cols-2 grid-rows-2  gap-4 col-span-1"
-      >
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 col-span-1">
         <div class=" rounded-xl mt-5 grid grid-cols-1 gap-4 col-span-2 ">
-          <h1 class="font-bold text-lg">Your Recent Target</h1>
+          <h1 class="font-bold text-lg">Recent Target</h1>
           <div class="grid grid-cols-1  xsm:grid-cols-2 gap-5">
-            <div v-if="diaryState.loading">Loading up data ..</div>
-            <div v-else-if="isDiaryEmpty">
-              <placeholder-card></placeholder-card>
-            </div>
-            <card-diary
-              v-else
-              v-for="diary in getFirstTwoLast(diaryState.allDiary)"
-              :diary="diary"
-              :key="diary.id"
-              :customClass="['grid-diary-item']"
-            />
+            <card-target :done="false" />
           </div>
         </div>
         <div class=" col-span-2">
           <div>
-            <h1 class="font-bold text-lg mb-5 ">Most Active Diary</h1>
-            <card-diary
-              v-if="!diaryState.loading && !isDiaryEmpty"
-              :diary="diaryState.allDiary[diaryState.allDiary.length - 1]"
-              :customClass="['grid-diary-item']"
-            />
-            <placeholder-card v-if="isDiaryEmpty"></placeholder-card>
+            <h1 class="font-bold text-lg mb-5 ">Recent Finished</h1>
+            <card-target :done="true" />
           </div>
         </div>
       </div>
       <div class="flex justify-center items-center ">
         <div class="bg-white shadow-xl p-10">
           <h1
-            class="font-bold text-center my-5 text-xl py-3 px-5 rounded-full box-atention-color text-gray-600"
+            class="font-bold text-center my-5 text-xl py-3 px-5 rounded-full target-color text-gray-600"
           >
             Target Stats
           </h1>
@@ -177,7 +153,7 @@
 
 <script>
 import CardDiary from "../components/CardDiary.vue";
-// import CardTarget from "../components/CardTarget.vue";
+import CardTarget from "../components/CardTarget.vue";
 import PlaceholderCard from "../components/PlaceholderCard.vue";
 // import itemContainer from "../components/ItemContainer.vue";
 
@@ -190,7 +166,7 @@ export default {
   name: "Home",
   components: {
     CardDiary,
-    // CardTarget,
+    CardTarget,
     PlaceholderCard
     // itemContainer
   },
