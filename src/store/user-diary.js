@@ -5,7 +5,9 @@ const diary = {
   namespaced: true,
   state: {
     allDiary: [],
+    currentResultFilteredOption: [],
     currentDiary: {},
+    counter: 0,
     currentSearch: null,
     loading: true
   },
@@ -14,13 +16,19 @@ const diary = {
       return state.allDiary.filter(diary => diary.pin);
     },
     searchDiary(state) {
-      if (!state.currentSearch) {
-        return state.allDiary;
+      if (state.currentSearch) {
+        return state.allDiary.filter(diary =>
+          diary.title.toLowerCase().includes(state.currentSearch.toLowerCase())
+        );
       }
 
-      return state.allDiary.filter(diary =>
-        diary.title.toLowerCase().includes(state.currentSearch.toLowerCase())
-      );
+      if (state.currentResultFilteredOption) {
+        return state.currentResultFilteredOption;
+      }
+
+      if (!state.currentSearch && !state.currentResultFilteredOption) {
+        return state.allDiary;
+      }
     },
     allMood(state) {
       return new Set(state.allDiary.map(diary => diary.mood));
@@ -47,6 +55,10 @@ const diary = {
     },
     setCurrentSearch(state, value) {
       state.currentSearch = value;
+    },
+    setCurrentResultFilteredOption(state, result) {
+      state.currentResultFilteredOption = result;
+      console.log(result);
     }
   },
   actions: {
@@ -85,6 +97,24 @@ const diary = {
     async getAllDiary({ commit }) {
       const val = await moralizeDb.getAllItem(CONFIG.DB_KEY_DIARY);
       commit("updateAllDiary", val);
+    },
+
+    filterOption({ commit, state }, selectedOption) {
+      // for (const property in selectedOption) {
+      //   if (selectedOption[property] !== "Default") {
+      //     notDefault.push({
+      //       mode: property,
+      //       value: selectedOption[property]
+      //     });
+      //   }
+      // }
+      // notDefault.forEach(ctg => {
+      //   console.log(ctg.mode, ctg.value);
+      //   const res = state.allDiary.filter(
+      //     diary => diary[ctg.mode] === ctg.value
+      //   );
+      //   commit("setCurrentResultFilteredOption", res);
+      // });
     }
   }
 };

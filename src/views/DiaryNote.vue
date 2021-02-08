@@ -17,12 +17,7 @@
           </div>
           <div class="flex flex-col items-center">
             Mood
-            <select
-              name="mood"
-              class="custom-select"
-              v-model="selectValue.mood"
-            >
-              <option selected>Default</option>
+            <select name="mood" class="custom-select" v-model="select.mood">
               <option
                 v-for="mood in filteredGettersOptions.mood"
                 :value="mood"
@@ -37,9 +32,8 @@
             <select
               name="location"
               class="custom-select"
-              v-model="selectValue.location"
+              v-model="select.location"
             >
-              <option selected>Default </option>
               <option
                 v-for="location in filteredGettersOptions.location"
                 :value="location"
@@ -51,8 +45,7 @@
           </div>
           <div class="flex flex-col items-center">
             Tags
-            <select name="tags" class="custom-select" v-model="selectValue.tag">
-              <option selected>Default </option>
+            <select name="tags" class="custom-select" v-model="select.tag">
               <option
                 v-for="tag in filteredGettersOptions.tag"
                 :value="tag"
@@ -73,7 +66,14 @@
       <div class="mt-6 grid grid-cols-1 bsm:grid-cols-2 xl:grid-cols-3 gap-3">
         <div v-if="diaryState.loading">Loading up data ..</div>
         <card-diary
-          v-else
+          v-else-if="getDiary && !currentFiltered"
+          v-for="diary in getDiary"
+          :key="diary.id"
+          :diary="diary"
+          :customClass="['grid-diary-item']"
+        ></card-diary>
+        <card-diary
+          v-else-if="currentFiltered"
           v-for="diary in getDiary"
           :key="diary.id"
           :diary="diary"
@@ -100,9 +100,14 @@ export default {
   setup() {
     const store = useStore();
     const diaryState = computed(() => store.state.diary);
+    const currentFiltered = computed(
+      () => store.state.diary.currentResultFilteredOption
+    );
     // const pinedDiary = computed(() => store.getters["diary/getPinedDiary"]);
     const getDiary = computed(() => store.getters["diary/searchDiary"]);
+    const allDiaryState = computed(() => store.state.diary.allDiary);
     const isUserTyped = ref("");
+    const userSelectSomething = ref("");
 
     const filteredGettersOptions = reactive({
       mood: computed(() => store.getters["diary/allMood"]),
@@ -111,11 +116,42 @@ export default {
     });
 
     // Select Ref
-    const selectValue = reactive({
-      mood: "Default",
-      location: "Default",
-      tag: "Default"
+    const select = reactive({
+      mood: "",
+      location: "",
+      tag: ""
     });
+
+    // For now only work 2 tag ( mood & location)
+    const selectFiltered = computed(() => {
+      let mood = select.mood;
+      let location = select.location;
+      let tag = select.tag;
+
+      const res = allDiaryState.value.filter(diary => {
+        let filtered = true;
+        if (mood && mood.length > 0) {
+          userSelectSomething.value = true;
+          filtered = diary.mood == mood;
+        }
+
+        if (filtered) {
+          if (location && location.length > 0) {
+            userSelectSomething.value = true;
+            filtered = diary.location == location;
+          }
+
+          if (tag && tag.length > 0) {
+            userSelectSomething.value = true;
+            filtered = diary.tag == tag;
+          }
+        }
+        return filtered;
+      });
+      console.log(res);
+      return res;
+    });
+    store.commit("diary/setCurrentResultFilteredOption", selectFiltered);
 
     function searchItems(value) {
       isUserTyped.value = value;
@@ -123,11 +159,13 @@ export default {
     }
 
     const defineTitle = computed(() => {
-      return isUserTyped.value ? "Search Result" : "List Diary";
+      return isUserTyped.value || userSelectSomething.value
+        ? "Search Result"
+        : "List Diary";
     });
 
     const defineTitleAmount = computed(() => {
-      return isUserTyped.value
+      return isUserTyped.value || userSelectSomething.value
         ? getDiary.value.length
         : diaryState.value.allDiary.length;
     });
@@ -140,7 +178,9 @@ export default {
       isUserTyped,
       getDiary,
       filteredGettersOptions,
-      selectValue
+      select,
+      selectFiltered,
+      currentFiltered
     };
   }
 };

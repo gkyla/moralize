@@ -271,7 +271,6 @@ export default {
 
         watchEffect(() => {
           diaryData.value = currentDiaryLoaded.value;
-          console.log(diaryData.value);
         });
       }
     }
