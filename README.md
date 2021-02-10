@@ -6,7 +6,9 @@ Basic app in order improve my coding skill in Javascript ✨
 
 - [ ] Redesign Home to be better on non desktop screen
 - [ ] Add Advanced Search Filtering And Sorting User Diary
+  - [ ] Add info for the current searched tag
 - [ ] Add Advanced Search Filtering And Sorting User Target
+  - [ ] Add info for the current searched tag
 - [ ] Add Diary Photobox Modal
 - [ ] Chart stats for user diary & user target
 - [ ] Event Calendar
