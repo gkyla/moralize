@@ -185,13 +185,40 @@ export default {
       tag: "None"
     });
 
+    const buildFilter = filter => {
+      let query = {};
+      for (let keys in filter) {
+        if (filter[keys].constructor === Array && filter[keys][0] !== "None") {
+          query[keys] = filter[keys];
+        }
+      }
+      console.log(query);
+      return query;
+    };
+
+    const filterData = (data, query) => {
+      const filteredData = data.filter(item => {
+        for (let key in query) {
+          if (item[key] === undefined || !query[key].includes(item[key])) {
+            return false;
+          }
+        }
+        return true;
+      });
+      return filteredData;
+    };
+
     // For now only work 2 tag ( mood & location)
     const selectFiltered = computed(() => {
-      const tempSearchTag = reactive({
-        mood: select.mood,
-        location: select.location,
-        tag: select.tag
-      });
+      const choosenTags = {
+        mood: [select.mood],
+        location: [select.location],
+        tag: [select.tag]
+      };
+      const query = buildFilter(choosenTags);
+      const result = filterData(allDiaryState.value, query);
+
+      return result;
     });
     store.commit("diary/setCurrentResultFilteredOption", selectFiltered);
 
