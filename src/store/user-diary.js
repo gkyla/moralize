@@ -58,7 +58,6 @@ const diary = {
     },
     setCurrentResultFilteredOption(state, result) {
       state.currentResultFilteredOption = result;
-      console.log(result);
     }
   },
   actions: {
