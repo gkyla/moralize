@@ -1,7 +1,7 @@
 <template>
   <div id="button">
     <button
-      class="nav-link md:bg-gray-600 md:text-white md:hover:bg-gray-400"
+      class="nav-link md:bg-gray-600 md:text-white md:hover:bg-gray-400 rounded-full"
       @click="modalOpen = !modalOpen"
     >
       <font-awesome-icon class="text-2xl" icon="plus-circle" />
