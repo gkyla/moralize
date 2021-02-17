@@ -6,7 +6,7 @@
   >
     <div
       id="modal-content"
-      class="relative block bg-white w-screen h-full max-h-full shadow-lg rounded-xl overflow-hidden pb-20"
+      class="relative block bg-white w-screen h-full max-h-full shadow-lg rounded-2xl overflow-hidden pb-20"
     >
       <div
         id="window-control"
@@ -32,7 +32,7 @@
               id="title"
               placeholder="Add Title"
               v-model="diaryData.title"
-              class="border rounded-lg w-full px-2 py-2 text-2xl shadow"
+              class="border rounded-2xl w-full px-2 py-2 text-2xl shadow"
               type="text"
             />
           </div>
@@ -42,7 +42,7 @@
           >
             <div
               id="image-container"
-              class="flex items-center justify-center  w-full rounded-lg lg:max-w-xl xl:max-w-3xl lg:h-auto overflow-hidden relative shadow-allround"
+              class="flex items-center justify-center  w-full rounded-2xl lg:max-w-xl xl:max-w-3xl lg:h-auto overflow-hidden relative shadow-allround"
             >
               <label
                 for="file"
@@ -78,7 +78,7 @@
             </div>
             <div
               id="options-stuff"
-              class="lg:ml-3 mt-2 lg:mt-0 min-w-min flex-shrink-0 flex flex-grow flex-col rounded-lg text-lg text-gray-600"
+              class="lg:ml-3 mt-2 lg:mt-0 min-w-min flex-shrink-0 flex flex-grow flex-col rounded-2xl text-lg text-gray-600"
             >
               <div id="tag-option" class="flex flex-col mb-2">
                 <label for="add-tag" class="font-bold flex items-center py-2">
@@ -90,7 +90,7 @@
                   id="add-label"
                   placeholder="Add Tag"
                   v-model="diaryData.tag"
-                  class="border rounded-lg bg-white px-3 py-2 shadow"
+                  class="border rounded-2xl bg-white px-3 py-2 shadow"
                 />
               </div>
               <div id="mood-option" class="flex flex-col">
@@ -105,7 +105,7 @@
                   name="mood-option"
                   id="mood-option"
                   v-model="diaryData.mood"
-                  class="p-2 rounded-md bg-gray-100 shadow"
+                  class="p-2 rounded-2xl bg-gray-100 shadow"
                 >
                   <option value="Happy">Happy</option>
                   <option value="Sad">Sad</option>
@@ -127,7 +127,7 @@
                   id="add-location"
                   placeholder="Add location"
                   v-model="diaryData.location"
-                  class="border rounded-lg bg-white px-3 py-2 shadow"
+                  class="border rounded-2xl bg-white px-3 py-2 shadow"
                 />
               </div>
               <div id="created-on">
@@ -149,7 +149,7 @@
           <div id="button-submit" class="flex">
             <button
               type="submit"
-              class="box-atention-color shadow-lg font-bold px-2 py-2 my-4 ml-auto rounded-lg justify-self-start"
+              class="box-atention-color shadow-lg font-bold px-2 py-2 my-4 ml-auto rounded-2xl justify-self-start"
             >
               Save Diary
             </button>
@@ -164,8 +164,6 @@
 /* eslint-disable no-unused-vars */
 import { ref, reactive, computed, watchEffect } from "vue";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import moralizeDb from "../data/idb";
-import CONFIG from "../settings/config";
 import { useStore } from "vuex";
 
 export default {
