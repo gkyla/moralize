@@ -2,7 +2,7 @@
   <div id="search-bar" class="relative w-full flex items-center">
     <input
       type="text"
-      class="p-4 w-full  border rounded-lg shadow-md "
+      class="p-4 w-full  border rounded-2xl shadow-md "
       placeholder="Search your diary"
       @input="searchValue"
       v-model="input"
