@@ -28,8 +28,7 @@
     }
 
     .custom-select {
-      @apply p-3 rounded-lg font-bold text-lg box-atention-color;
-      max-width: 110px;
+      @apply p-3 rounded-2xl font-bold text-lg box-atention-color my-2;
     }
 
     .shadow-allround {
