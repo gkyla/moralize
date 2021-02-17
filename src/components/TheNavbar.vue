@@ -1,29 +1,29 @@
 <template>
   <nav
-    class="mt-auto w-full md:relative md:h-screen flex items-center p-4 md:flex-col nav-color flex-shrink-0 md:w-56 lg:w-72"
+    class="mt-auto w-full md:relative md:w-28 lg:w-64  md:h-screen flex items-center p-4 md:flex-col nav-color flex-shrink-0 "
   >
     <!-- <user-badge class="hidden md:block"></user-badge> -->
     <div id="nav-links" class="text-left flex justify-around w-full md:block">
       <router-link to="/" class="nav-link font-bold">
         <font-awesome-icon class="text-2xl" icon="home" />
-        <p class=" ml-5 hidden md:inline">Home</p>
+        <p class=" ml-5 hidden lg:inline">Home</p>
       </router-link>
       <router-link to="/diary-note" class="nav-link font-bold">
         <font-awesome-icon class="text-2xl" icon="book-open" />
-        <p class=" ml-5 hidden md:inline">Diary Note</p>
+        <p class=" ml-5 hidden lg:inline">Diary Note</p>
       </router-link>
       <add-button-handler class="md:hidden" />
       <router-link to="/your-target" class="nav-link font-bold">
         <font-awesome-icon class="text-2xl" icon="sticky-note" />
-        <p class=" ml-5 hidden md:inline">Your Target</p>
+        <p class=" ml-5 hidden lg:inline">Your Target</p>
       </router-link>
       <router-link to="/event" class="nav-link font-bold">
         <font-awesome-icon class="text-2xl" icon="calendar-alt" />
-        <p class=" ml-5 hidden md:inline">Event</p>
+        <p class=" ml-5 hidden lg:inline">Event</p>
       </router-link>
       <router-link to="/pined" class="nav-link font-bold hidden lg:block">
         <font-awesome-icon class="text-2xl" icon="thumbtack" />
-        <p class=" ml-5 hidden md:inline">Pined</p>
+        <p class=" ml-5 hidden lg:inline">Pined</p>
       </router-link>
     </div>
   </nav>
