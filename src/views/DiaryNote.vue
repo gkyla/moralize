@@ -168,7 +168,6 @@ export default {
       return filteredData;
     };
 
-    // For now only work 2 tag ( mood & location)
     const selectFiltered = computed(() => {
       const choosenTags = {
         mood: [select.mood],
@@ -194,9 +193,7 @@ export default {
     });
 
     const defineTitleAmount = computed(() => {
-      return isUserTyped.value || userSelectSomething.value
-        ? getDiary.value.length
-        : diaryState.value.allDiary.length;
+      return getDiary.value.length;
     });
 
     return {
