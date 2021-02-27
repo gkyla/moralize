@@ -9,16 +9,10 @@
         <div
           class="lg:ml-auto flex items-center justify-between  flex-wrap gap-2"
         >
-          <div class="flex flex-col items-center">
-            <select name="Sort By" class="custom-select rounded-full">
-              <option value="none" selected>None</option>
-              <option>Default </option>
-            </select>
-          </div>
-
           <div class=" flex items-center">
             <button
-              class="box-atention-color rounded-2xl p-3 font-bold"
+              class="bg-gray-600 text-white rounded-2xl p-3 font-bold shadow-md"
+              :class="[advancedSearchToggle ? '' : '']"
               @click="advancedSearchToggle = !advancedSearchToggle"
             >
               Advanced Search
@@ -32,7 +26,14 @@
       class=" transition-all duration-500 ease-in-out overflow-hidden"
       :class="[advancedSearchToggle ? 'max-h-80 ' : 'max-h-0 ']"
     >
-      <div class="grid grid-cols-1">
+      <div class="grid grid-cols-2 gap-5 mt-2">
+        <div class="flex flex-col">
+          Sort By
+          <select name="Sort By" class="custom-select rounded-full">
+            <option value="none" selected>None</option>
+            <option>Default </option>
+          </select>
+        </div>
         <div class="flex flex-col">
           Mood
           <select name="mood" class="custom-select" v-model="select.mood">
@@ -163,6 +164,7 @@ export default {
             return false;
           }
         }
+
         return true;
       });
       return filteredData;
