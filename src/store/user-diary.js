@@ -9,7 +9,11 @@ const diary = {
     currentDiary: {},
     counter: 0,
     currentSearch: null,
-    loading: true
+    loading: true,
+    recentCreated: null,
+    totalPinned: null,
+    totalVariousLocation: null,
+    totalTag: null
   },
   getters: {
     getPinedDiary(state) {
@@ -93,8 +97,11 @@ const diary = {
       commit("setCurrentDiary", val);
     },
 
-    async getAllDiary({ commit }) {
+    async getAllDiary({ commit, getters }) {
       const val = await moralizeDb.getAllItem(CONFIG.DB_KEY_DIARY);
+
+      // Todo update totalPinned , dll ...
+      // pindahkan getters ke sini
       commit("updateAllDiary", val);
     },
 
