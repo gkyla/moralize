@@ -1,16 +1,25 @@
 import CONFIG from "../settings/config.js";
 import { openDB } from "idb";
 
-const db = openDB(CONFIG.DATABASE_NAME, CONFIG.DATABASE_VERSION, {
+const {
+  DATABASE_NAME,
+  DATABASE_VERSION,
+  DB_KEY_DIARY,
+  DB_KEY_TARGET,
+  DB_KEY_USERINFO,
+  DB_KEY_PINED
+} = CONFIG;
+
+const db = openDB(DATABASE_NAME, DATABASE_VERSION, {
   upgrade(database) {
-    database.createObjectStore(CONFIG.DB_KEY_DIARY, {
+    database.createObjectStore(DB_KEY_DIARY, {
       keyPath: "id"
     });
-    database.createObjectStore(CONFIG.DB_KEY_TARGET, { keyPath: "id" });
-    database.createObjectStore(CONFIG.DB_KEY_USERINFO, {
+    database.createObjectStore(DB_KEY_TARGET, { keyPath: "id" });
+    database.createObjectStore(DB_KEY_USERINFO, {
       keyPath: "model"
     });
-    database.createObjectStore(CONFIG.DB_KEY_PINED, {
+    database.createObjectStore(DB_KEY_PINED, {
       keyPath: "id"
     });
   }
