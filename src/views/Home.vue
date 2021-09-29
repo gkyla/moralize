@@ -245,11 +245,21 @@ export default {
 
     function calculateTime() {
       const momentHour = moment().hour();
-      return momentHour > 21
-        ? "Good Night"
-        : momentHour > 5
-        ? "Good Morning"
-        : "Good Afternoon";
+      console.log(momentHour);
+
+      if (momentHour >= 5 && momentHour <= 12) {
+        return "Good Morning";
+      }
+
+      if (momentHour >= 12 && momentHour <= 18) {
+        return "Good Afternoon";
+      }
+
+      if (momentHour >= 18 && momentHour <= 24) {
+        return "Good Evening";
+      }
+
+      return "Good Night";
     }
 
     // Update every second
