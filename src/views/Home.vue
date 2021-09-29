@@ -245,7 +245,6 @@ export default {
 
     function calculateTime() {
       const momentHour = moment().hour();
-      console.log(momentHour);
 
       if (momentHour >= 5 && momentHour <= 12) {
         return "Good Morning";
@@ -262,10 +261,16 @@ export default {
       return "Good Night";
     }
 
+    // Initial Value
+    greetingsMsg.value = calculateTime();
+
     // Update every second
     setInterval(() => {
       timeTick.value = moment();
-      greetingsMsg.value = calculateTime();
+
+      if (timeTick.value.second() === 0 /* which mean new minutes */) {
+        greetingsMsg.value = calculateTime();
+      }
     }, 1000);
 
     return {
