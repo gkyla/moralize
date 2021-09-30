@@ -85,8 +85,8 @@
         lg:my-8
       "
     >
-      <div class="flex p-2">
-        <div class="bg-white shadow-xl p-10">
+      <div class="flex flex-col lg:flex-row p-2 gap-5">
+        <div class="bg-white shadow-xl p-10 flex-2">
           <h1
             class="
               font-bold
@@ -116,25 +116,25 @@
           </p>
           <p class="stats-information">Total of tag : 13 Tag</p>
         </div>
-      </div>
-      <div class="grid grid-cols-1 lg:grid-cols-4 gap-4 col-span-1">
-        <div
-          name="Recent Diary"
-          class="rounded-xl mt-5 grid grid-cols-1 gap-4 col-span-2"
-        >
-          <h1 class="font-bold text-lg">Your Recent Diary</h1>
-          <div class="grid grid-cols-1 bsm:grid-cols-2 gap-5">
-            <div v-if="diaryState.loading">Loading up data ..</div>
-            <div v-else-if="isDiaryEmpty">
-              <placeholder-card></placeholder-card>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 col-span-1 flex-1">
+          <div
+            name="Recent Diary"
+            class="rounded-xl mt-5 grid grid-cols-1 gap-4 col-span-2"
+          >
+            <h1 class="font-bold text-lg">Your Recent Diary</h1>
+            <div class="grid grid-cols-1 bsm:grid-cols-2 gap-5">
+              <div v-if="diaryState.loading">Loading up data ..</div>
+              <div v-else-if="isDiaryEmpty">
+                <placeholder-card></placeholder-card>
+              </div>
+              <card-diary
+                v-else
+                v-for="diary in getFirstTwoLast(diaryState.allDiary)"
+                :diary="diary"
+                :key="diary.id"
+                :customClass="['grid-diary-item']"
+              />
             </div>
-            <card-diary
-              v-else
-              v-for="diary in getFirstTwoLast(diaryState.allDiary)"
-              :diary="diary"
-              :key="diary.id"
-              :customClass="['grid-diary-item']"
-            />
           </div>
         </div>
       </div>
@@ -153,8 +153,8 @@
         lg:my-8
       "
     >
-      <div class="flex">
-        <div class="bg-white shadow-xl p-10">
+      <div class="flex flex-col lg:flex-row gap-5">
+        <div class="bg-white shadow-xl p-10 flex-2">
           <h1
             class="
               font-bold
@@ -180,13 +180,12 @@
           <p class="stats-information">Recent Created : 20 June 2021</p>
           <p class="stats-information">Total Finished Target : 40</p>
         </div>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-4 gap-4 col-span-1">
-        <div class="rounded-xl mt-5 grid grid-cols-1 gap-4 col-span-2">
-          <h1 class="font-bold text-lg">Recent Target</h1>
-          <div class="grid grid-cols-1 xsm:grid-cols-2 gap-5">
-            <card-target :done="false" />
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 col-span-1 flex-1">
+          <div class="rounded-xl mt-5 grid grid-cols-1 gap-4 col-span-2">
+            <h1 class="font-bold text-lg">Recent Target</h1>
+            <div class="grid grid-cols-1 xsm:grid-cols-2 gap-5">
+              <card-target :done="false" />
+            </div>
           </div>
         </div>
       </div>
