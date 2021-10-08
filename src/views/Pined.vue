@@ -5,7 +5,15 @@
 </template>
 
 <script>
-export default {};
+import { useStore } from "vuex";
+
+export default {
+  setup() {
+    const store = useStore();
+    const pinnedDiary = store.getters.diary.getPinedDiary;
+    console.log(pinnedDiary);
+  },
+};
 </script>
 
 <style></style>
