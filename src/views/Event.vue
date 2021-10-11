@@ -1,5 +1,5 @@
 <template>
-  <div id="event">
+  <div id="event" class="container-page">
     <h1 class="text-4xl">Calendar Event</h1>
     <FullCalendar :options="calendarOptions" />
   </div>
