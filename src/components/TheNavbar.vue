@@ -35,10 +35,7 @@
         <font-awesome-icon class="text-2xl" icon="calendar-alt" />
         <p class="ml-5 hidden lg:inline-block">Event</p>
       </router-link>
-      <router-link
-        to="/pined"
-        class="nav-link font-bold hidden lg:inline-block"
-      >
+      <router-link to="/pined" class="nav-link font-bold hidden md:flex">
         <font-awesome-icon class="text-2xl" icon="thumbtack" />
         <p class="ml-5 hidden lg:inline-block">Pined</p>
       </router-link>
@@ -83,7 +80,7 @@ export default {
 
 <style>
 .nav-link {
-  @apply block py-2 my-3 sm:py-4 px-4 sm:px-6 md:inline-flex md:items-center justify-center md:justify-start hover:bg-gray-200 transition-all rounded-md md:mb-5;
+  @apply flex  py-2 my-3 sm:py-4 px-4 sm:px-6 md:flex md:items-center justify-center md:justify-center lg:justify-start hover:bg-gray-200 transition-all rounded-md md:mb-5;
 }
 
 .nav-link.router-link-exact-active {
