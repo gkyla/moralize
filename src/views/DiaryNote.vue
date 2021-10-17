@@ -1,15 +1,15 @@
 <template>
   <div class="container-page" id="about">
-    <div id="option" class="grid grid-cols-1  lg:grid-cols-2 lg:gap-5">
+    <div id="option" class="grid grid-cols-1 lg:grid-cols-2 lg:gap-5">
       <search-bar @searchItems="searchItems"></search-bar>
       <div
         id="filterAndSort"
-        class="w-full mt-3 lg:mt-0 flex items-center py-2  "
+        class="w-full mt-3 lg:mt-0 flex items-center py-2"
       >
         <div
-          class="lg:ml-auto flex items-center justify-between  flex-wrap gap-2"
+          class="lg:ml-auto flex items-center justify-between flex-wrap gap-2"
         >
-          <div class=" flex items-center">
+          <div class="flex items-center">
             <button
               class="bg-gray-600 text-white rounded-2xl p-3 font-bold shadow-md"
               :class="[advancedSearchToggle ? '' : '']"
@@ -23,7 +23,7 @@
       </div>
     </div>
     <div
-      class=" transition-all duration-500 ease-in-out overflow-hidden"
+      class="transition-all duration-500 ease-in-out overflow-hidden"
       :class="[advancedSearchToggle ? 'max-h-80 ' : 'max-h-0 ']"
     >
       <div class="grid grid-cols-2 gap-5 mt-2">
@@ -31,7 +31,7 @@
           Sort By
           <select name="Sort By" class="custom-select rounded-full">
             <option value="none" selected>None</option>
-            <option>Default </option>
+            <option>Default</option>
           </select>
         </div>
         <div class="flex flex-col">
@@ -81,7 +81,16 @@
     </div>
     <section
       id="list-diary"
-      class=" bg-white rounded-xl bg-opacity-70 shadow-md lg:p-5 p-2 my-4 lg:my-8"
+      class="
+        bg-white
+        rounded-xl
+        bg-opacity-70
+        shadow-md
+        lg:p-5
+        p-2
+        my-4
+        lg:my-8
+      "
     >
       <div class="flex items-center justify-between">
         <the-title :title="defineTitle" :amount="defineTitleAmount"></the-title>
@@ -118,7 +127,7 @@ export default {
   components: {
     CardDiary,
     SearchBar,
-    TheTitle
+    TheTitle,
   },
   setup() {
     const store = useStore();
@@ -136,17 +145,17 @@ export default {
     const filteredGettersOptions = reactive({
       mood: computed(() => store.getters["diary/allMood"]),
       tag: computed(() => store.getters["diary/allTag"]),
-      location: computed(() => store.getters["diary/allLocation"])
+      location: computed(() => store.getters["diary/allLocation"]),
     });
 
     // Select Ref
     const select = reactive({
       mood: "None",
       location: "None",
-      tag: "None"
+      tag: "None",
     });
 
-    const buildFilter = filter => {
+    const buildFilter = (filter) => {
       let query = {};
       for (let keys in filter) {
         if (filter[keys].constructor === Array && filter[keys][0] !== "None") {
@@ -158,7 +167,7 @@ export default {
     };
 
     const filterData = (data, query) => {
-      const filteredData = data.filter(item => {
+      const filteredData = data.filter((item) => {
         for (let key in query) {
           if (item[key] === undefined || !query[key].includes(item[key])) {
             return false;
@@ -174,7 +183,7 @@ export default {
       const choosenTags = {
         mood: [select.mood],
         location: [select.location],
-        tag: [select.tag]
+        tag: [select.tag],
       };
       const query = buildFilter(choosenTags);
       const result = filterData(allDiaryState.value, query);
@@ -209,9 +218,9 @@ export default {
       select,
       selectFiltered,
       currentFiltered,
-      advancedSearchToggle
+      advancedSearchToggle,
     };
-  }
+  },
 };
 </script>
 

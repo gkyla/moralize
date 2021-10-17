@@ -1,5 +1,5 @@
 <template>
-  <div id="Pined">
+  <div id="Pined" class="container-page">
     <p>From pinedDiary</p>
     <section
       id="list-diary"
@@ -22,7 +22,7 @@
           v-for="diary in pinnedDiary"
           :key="diary.id"
           :diary="diary"
-          :customClass="['grid-diary-item']"
+          :customClass="['grid-diary-item', 'text-left']"
         ></card-diary>
       </div>
     </section>
