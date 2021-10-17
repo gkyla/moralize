@@ -17,7 +17,7 @@
         flex
         justify-between
         items-center
-        px-2
+        px-4
         md:hidden
       "
     >
