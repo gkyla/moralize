@@ -1,5 +1,5 @@
 <template>
-  <div id="event" class="container-page">
+  <div id="event" class="container-page bg-white bg-opacity-90">
     <h1 class="text-4xl">Calendar Event</h1>
     <FullCalendar :options="calendarOptions" />
   </div>
@@ -21,6 +21,8 @@ export default {
         plugins: [dayGridPlugin, interactionPlugin],
         initialView: "dayGridMonth",
         dateClick: this.handleDateClick,
+        selectable: true,
+        selectMirror: true,
       },
     };
   },
