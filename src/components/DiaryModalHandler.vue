@@ -1,12 +1,40 @@
 <template>
   <div
     id="modal-box"
-    class="fixed flex items-center justify-center z-50 top-0 left-0 bottom-0 right-0 bg-gray-400 bg-opacity-50 md:p-4 p-2 xl:px-72 xl:py-16"
+    class="
+      fixed
+      flex
+      items-center
+      justify-center
+      z-50
+      top-0
+      left-0
+      bottom-0
+      right-0
+      bg-gray-400 bg-opacity-50
+      md:p-4
+      p-2
+      xl:px-48
+      xl:py-10
+      2xl:px-72
+      2xl:py-16
+    "
     v-if="diaryIsOpened"
   >
     <div
       id="modal-content"
-      class="relative block bg-white w-screen h-full max-h-full shadow-lg rounded-2xl overflow-hidden pb-20"
+      class="
+        relative
+        block
+        bg-white
+        w-screen
+        h-full
+        max-h-full
+        shadow-lg
+        rounded-2xl
+        overflow-hidden
+        pb-20
+      "
     >
       <div
         id="window-control"
@@ -21,7 +49,14 @@
       </div>
       <div
         id="modal-info"
-        class="md:mt-0 w-full h-full overflow-y-auto overflow-x-hidden px-5 py-2"
+        class="
+          md:mt-0
+          w-full
+          h-full
+          overflow-y-auto overflow-x-hidden
+          px-5
+          py-2
+        "
       >
         <form id="diary-note-text-handler" @submit.prevent="submitDiary">
           <div id="title-container">
@@ -38,15 +73,46 @@
           </div>
           <div
             id="group-diary"
-            class="flex flex-col lg:flex-row py-2 my-4  max-h-full xl:h-auto object-center object-contain"
+            class="
+              flex flex-col
+              lg:flex-row
+              py-2
+              my-4
+              max-h-full
+              xl:h-auto
+              object-center object-contain
+            "
           >
             <div
               id="image-container"
-              class="flex items-center justify-center  w-full rounded-2xl lg:max-w-xl xl:max-w-3xl lg:h-auto overflow-hidden relative shadow-allround"
+              class="
+                flex
+                items-center
+                justify-center
+                w-full
+                rounded-2xl
+                lg:max-w-xl
+                2xl:max-w-3xl
+                lg:h-auto
+                overflow-hidden
+                relative
+                shadow-allround
+              "
             >
               <label
                 for="file"
-                class="cursor-pointer bg-white text-gray-500 w-full h-full flex flex-col text-center items-center justify-center p-20 "
+                class="
+                  cursor-pointer
+                  bg-white
+                  text-gray-500
+                  w-full
+                  h-full
+                  flex flex-col
+                  text-center
+                  items-center
+                  justify-center
+                  p-20
+                "
                 v-if="!isImage"
               >
                 <font-awesome-icon icon="image" class="text-5xl" />
@@ -78,7 +144,15 @@
             </div>
             <div
               id="options-stuff"
-              class="lg:ml-3 mt-2 lg:mt-0 min-w-min flex-shrink-0 flex flex-grow flex-col rounded-2xl text-lg text-gray-600"
+              class="
+                lg:ml-3
+                mt-2
+                lg:mt-0
+                min-w-min
+                flex-shrink-0 flex flex-grow flex-col
+                rounded-2xl
+                text-lg text-gray-600
+              "
             >
               <div id="tag-option" class="flex flex-col mb-2">
                 <label for="add-tag" class="font-bold flex items-center py-2">
@@ -149,7 +223,17 @@
           <div id="button-submit" class="flex">
             <button
               type="submit"
-              class="box-atention-color shadow-lg font-bold px-2 py-2 my-4 ml-auto rounded-2xl justify-self-start"
+              class="
+                box-atention-color
+                shadow-lg
+                font-bold
+                px-2
+                py-2
+                my-4
+                ml-auto
+                rounded-2xl
+                justify-self-start
+              "
             >
               Save Diary
             </button>
