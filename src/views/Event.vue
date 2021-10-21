@@ -7,7 +7,7 @@
 
 <script>
 import "@fullcalendar/core/vdom"; // solves problem with Vite
-import { mapGetters } from "vuex";
+import { mapGetters, mapState } from "vuex";
 import FullCalendar from "@fullcalendar/vue3";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -30,19 +30,18 @@ export default {
           listPlugin,
         ],
         initialView: "dayGridMonth",
-        // dateClick: this.handleDateClick, // Incase we need it future
         selectable: true,
         selectMirror: true,
         select: this.handleSelect,
         editable: true,
-        events: this.getEventLists,
+        events: this.$store.getters["calenderEvent/getEventLists"],
       },
     };
   },
   methods: {
     handleSelect(arg) {
       const title = prompt("title");
-      console.log(title);
+
       this.$store.commit("calenderEvent/addEvent", {
         title,
         start: arg.startStr,
@@ -50,11 +49,9 @@ export default {
       });
     },
   },
-  computed: {
-    ...mapGetters("calenderEvent", ["getEventLists"]),
-  },
+  computed: {},
   mounted() {
-    console.log(this.getEventLists);
+    console.log(this.eventList);
   },
 };
 </script>
