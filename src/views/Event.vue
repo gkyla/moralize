@@ -7,7 +7,6 @@
 
 <script>
 import "@fullcalendar/core/vdom"; // solves problem with Vite
-import { mapGetters, mapState } from "vuex";
 import FullCalendar from "@fullcalendar/vue3";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
@@ -41,6 +40,10 @@ export default {
   methods: {
     handleSelect(arg) {
       const title = prompt("title");
+
+      if (!title) {
+        return;
+      }
 
       this.$store.commit("calenderEvent/addEvent", {
         title,
