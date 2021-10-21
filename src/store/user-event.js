@@ -12,8 +12,8 @@ const calenderEvent = {
     }
   },
   mutations: {
-    addEvent(state, data) {
-      state.events.push(data);
+    addEvent(state, event) {
+      state.events.push(event);
     }
   },
   actions: {}
