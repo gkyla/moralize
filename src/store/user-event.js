@@ -14,6 +14,11 @@ const calenderEvent = {
   mutations: {
     addEvent(state, event) {
       state.events.push(event);
+    },
+    updateEvent(state, event /* updatedEvent */) {
+      /* TODO :
+          Tambahin id untuk setiap event agar bisa di track index nya
+        */
     }
   },
   actions: {}
