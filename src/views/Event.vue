@@ -1,7 +1,12 @@
 <template>
   <div id="event" class="container-page bg-white bg-opacity-90">
     <h1 class="text-4xl">Calendar Event</h1>
-    <FullCalendar :options="calendarOptions" />
+    <FullCalendar
+      :options="calendarOptions"
+      @resize="handleResize"
+      @drop="handleDrop"
+      @drag="handleDrag"
+    />
   </div>
 </template>
 
@@ -33,18 +38,38 @@ export default {
         selectMirror: true,
         select: this.handleSelect,
         editable: true,
+        eventResize: this.handleResize,
+        eventDrop: this.handleDrop,
         events: this.$store.getters["calenderEvent/getEventLists"],
       },
     };
   },
   methods: {
+    handleDrop(arg) {
+      console.log("drop handler :", arg);
+      this.updateEvent(arg);
+    },
+    handleResize(arg) {
+      console.log("resize handler :", arg);
+      this.updateEvent(arg);
+    },
+    handleDrag(arg) {
+      console.log("resize handler :", arg);
+    },
+    updateEvent(arg) {
+      this.$store.commit("calenderEvent/updateEvent", {
+        title: arg.event.title,
+        start: arg.event.startStr,
+        end: arg.event.endStr,
+      });
+    },
     handleSelect(arg) {
       const title = prompt("title");
 
+      console.log(arg);
       if (!title) {
         return;
       }
-
       this.$store.commit("calenderEvent/addEvent", {
         title,
         start: arg.startStr,
