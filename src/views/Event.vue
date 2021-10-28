@@ -1,12 +1,7 @@
 <template>
   <div id="event" class="container-page bg-white bg-opacity-90">
     <h1 class="text-4xl">Calendar Event</h1>
-    <FullCalendar
-      :options="calendarOptions"
-      @resize="handleResize"
-      @drop="handleDrop"
-      @drag="handleDrag"
-    />
+    <FullCalendar :options="calendarOptions" />
   </div>
 </template>
 
