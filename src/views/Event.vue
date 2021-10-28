@@ -53,6 +53,7 @@ export default {
     },
     updateEvent(arg) {
       this.$store.commit("calenderEvent/updateEvent", {
+        id: +Date(),
         title: arg.event.title,
         start: arg.event.startStr,
         end: arg.event.endStr,
