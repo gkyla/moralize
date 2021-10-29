@@ -52,12 +52,20 @@ export default {
       console.log("resize handler :", arg);
     },
     updateEvent(arg) {
-      this.$store.commit("calenderEvent/updateEvent", {
-        id: +Date(),
-        title: arg.event.title,
-        start: arg.event.startStr,
-        end: arg.event.endStr,
+      const index = this.$store.state.calenderEvent.events.find((ev) => {
+        return (
+          ev.id == arg.event.id && ev.title == arg.event.title
+        ); /* not checking the data type */
+        //  ev.startStr == arg.event.startStr
       });
+      console.log(this.$store.state.calenderEvent.events);
+      console.log(index);
+      // this.$store.commit("calenderEvent/updateEvent", {
+      //   id: +new Date(),
+      //   title: arg.event.title,
+      //   start: arg.event.startStr,
+      //   end: arg.event.endStr
+      // });
     },
     handleSelect(arg) {
       const title = prompt("title");
@@ -68,6 +76,7 @@ export default {
       }
       this.$store.commit("calenderEvent/addEvent", {
         title,
+        id: +new Date(),
         start: arg.startStr,
         end: arg.endStr,
       });
