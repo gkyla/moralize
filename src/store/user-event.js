@@ -2,8 +2,18 @@ const calenderEvent = {
   namespaced: true,
   state: {
     events: [
-      { id: +new Date(), title: "event 1", date: "2021-10-16" },
-      { id: +new Date(), title: "event 2", date: "2021-10-14" }
+      {
+        id: +new Date(),
+        title: "event 1",
+        start: "2021-10-16",
+        end: "2021-10-17"
+      },
+      {
+        id: +new Date(),
+        title: "event 2",
+        start: "2021-10-14",
+        end: "2021-10-15"
+      }
     ]
   },
   getters: {
@@ -25,9 +35,24 @@ const calenderEvent = {
         end: fcArg.event.endStr
       };
       console.log(state.events);
-      /* TODO :
-          Tambahin id untuk setiap event agar bisa di track index nya
+    },
+    deleteEvent(state, { eventObj }) {
+      console.log(eventObj.event.title);
+      const index = state.events.findIndex(_event => {
+        return (
+          _event.id == eventObj.event.id && _event.title == eventObj.event.title
+        );
+      });
+
+      if (index !== -1) {
+        /* Prevent deleting the last item from the array of events, 
+          if we splice the array with the index of -1 then it will be deleting
+          the last item of the array
+
+          read mdn : Array.splice()
         */
+        state.events.splice(index, 1);
+      }
     }
   },
   actions: {}
