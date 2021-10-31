@@ -33,6 +33,7 @@ export default {
         selectMirror: true,
         select: this.handleSelect,
         editable: true,
+        eventResizableFromStart: true,
         eventResize: this.handleResize,
         eventDrop: this.handleDrop,
         events: this.$store.getters["calenderEvent/getEventLists"],
@@ -40,32 +41,27 @@ export default {
     };
   },
   methods: {
-    handleDrop(arg) {
-      console.log("drop handler :", arg);
-      this.updateEvent(arg);
+    handleDrop(fcArg) {
+      console.log("drop handler :", fcArg);
+      this.updateEvent(fcArg);
     },
-    handleResize(arg) {
-      console.log("resize handler :", arg);
-      this.updateEvent(arg);
+    handleResize(fcArg) {
+      console.log("resize handler :", fcArg);
+      this.updateEvent(fcArg);
     },
-    handleDrag(arg) {
-      console.log("resize handler :", arg);
+    handleDrag(fcArg) {
+      console.log("resize handler :", fcArg);
     },
-    updateEvent(arg) {
-      const index = this.$store.state.calenderEvent.events.find((ev) => {
-        return (
-          ev.id == arg.event.id && ev.title == arg.event.title
-        ); /* not checking the data type */
-        //  ev.startStr == arg.event.startStr
-      });
-      console.log(this.$store.state.calenderEvent.events);
-      console.log(index);
-      // this.$store.commit("calenderEvent/updateEvent", {
-      //   id: +new Date(),
-      //   title: arg.event.title,
-      //   start: arg.event.startStr,
-      //   end: arg.event.endStr
-      // });
+    updateEvent(fcArg) {
+      const eventIndex = this.$store.state.calenderEvent.events.findIndex(
+        (_event) => {
+          return (
+            _event.id == fcArg.event.id && _event.title == fcArg.event.title
+          ); /* not checking the data type */
+        }
+      );
+
+      this.$store.commit("calenderEvent/updateEvent", { eventIndex, fcArg });
     },
     handleSelect(arg) {
       const title = prompt("title");

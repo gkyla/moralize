@@ -16,14 +16,15 @@ const calenderEvent = {
       state.events.push(event);
       console.log(state.events);
     },
-    updateEvent(state, event /* updatedEvent */) {
-      console.log(event);
+    updateEvent(state, { eventIndex, arg } /* updatedEvent */) {
+      state.events[eventIndex] = {
+        ...state.events[eventIndex],
+        title: arg.event.title,
+        date: "",
+        start: arg.event.startStr,
+        end: arg.event.endStr
+      };
       console.log(state.events);
-
-      const index = state.events.findIndex(ev => {
-        return ev.id === event.id;
-      });
-      console.log(index);
       /* TODO :
           Tambahin id untuk setiap event agar bisa di track index nya
         */
