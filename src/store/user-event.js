@@ -16,13 +16,13 @@ const calenderEvent = {
       state.events.push(event);
       console.log(state.events);
     },
-    updateEvent(state, { eventIndex, arg } /* updatedEvent */) {
+    updateEvent(state, { eventIndex, fcArg } /* updatedEvent */) {
       state.events[eventIndex] = {
         ...state.events[eventIndex],
-        title: arg.event.title,
+        title: fcArg.event.title,
         date: "",
-        start: arg.event.startStr,
-        end: arg.event.endStr
+        start: fcArg.event.startStr,
+        end: fcArg.event.endStr
       };
       console.log(state.events);
       /* TODO :
