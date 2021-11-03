@@ -15,19 +15,61 @@
     "
     @click.stop="closeModal"
   >
-    <div class="bg-white text-center p-56 shadow-md relative z-50" @click.stop>
-      <h1 class="text-2xl">test</h1>
-      <h1 class="text-2xl">{{ editableEvent.title }}</h1>
+    <div
+      class="
+        bg-white
+        modal-width-height
+        shadow-2xl
+        relative
+        z-50
+        rounded-md
+        overflow-hidden
+      "
+      @click.stop
+    >
+      <div id="top-modal" class="flex p-4 box-atention-color w-full">
+        <button
+          @click.stop="closeModal"
+          class="ml-auto bg-gray-600 text-white px-3 py-1 rounded-lg"
+        >
+          <font-awesome-icon class="text-2xl" icon="times" />
+        </button>
+      </div>
+      <div id="inner-modal" class="p-4 w-full h-full">
+        <form @submit.prevent="updateEvent" class="rounded-md">
+          <div>
+            <p class="ml-2">-- Title</p>
+            <input
+              type="text"
+              class="w-full border-2 rounded-md p-2"
+              v-model="editableEvent.title"
+            />
+          </div>
+        </form>
 
-      <form
-        @submit.prevent="updateEvent"
-        class="border border-black border-b-2"
-      >
-        <input type="text" v-model="editableEvent.title" />
-      </form>
-
-      <button @click.stop="closeModal">Close</button>
-      <button @click.stop="deleteEvent">Delete Label Event</button>
+        <button
+          @click.stop="deleteEvent"
+          class="
+            box-atention-color
+            px-4
+            py-1
+            rounded-lg
+            mt-5
+            mr-2
+            hover:bg-red-500
+            transition-all
+          "
+        >
+          Remove
+        </button>
+        <button
+          type="submit"
+          class="box-atention-color px-4 py-1 rounded-lg mt-5"
+          @click.stop="updateEvent"
+        >
+          Save
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -100,4 +142,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.modal-width-height {
+  min-height: 400px;
+  min-width: 400px;
+}
+</style>
