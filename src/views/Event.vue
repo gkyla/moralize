@@ -86,7 +86,7 @@ export default {
         }
       );
 
-      if (eventIndex == -1) {
+      if (eventIndex !== -1) {
         this.$store.commit("calenderEvent/updateEvent", { eventIndex, fcArg });
       }
     },
