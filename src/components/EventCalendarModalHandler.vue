@@ -110,8 +110,8 @@ export default {
   props: {
     eventObj: {
       type: Object,
-      required: true
-    }
+      required: true,
+    },
   },
   setup(props, { emit }) {
     const modalIsOpened = ref(true);
@@ -120,14 +120,14 @@ export default {
 
     const copyEventObjProps = computed(() =>
       eventsData.value.find(
-        _event =>
+        (_event) =>
           _event.id == props.eventObj.event.id &&
           _event.title == props.eventObj.event.title
       )
     );
     const currentIndexOnTheArray = computed(() =>
       eventsData.value.findIndex(
-        _event =>
+        (_event) =>
           _event.id == props.eventObj.event.id &&
           _event.title == props.eventObj.event.title
       )
@@ -136,7 +136,7 @@ export default {
     const editableEvent = reactive({
       title: copyEventObjProps.value.title,
       start: copyEventObjProps.value.start,
-      end: copyEventObjProps.value.end
+      end: copyEventObjProps.value.end,
     });
 
     function closeModal() {
@@ -149,7 +149,7 @@ export default {
         ...eventsData.value[currentIndexOnTheArray.value],
         title: editableEvent.title,
         start: editableEvent.start,
-        end: editableEvent.end
+        end: editableEvent.end,
       };
 
       console.log("updated");
@@ -157,7 +157,7 @@ export default {
 
     function deleteEvent() {
       store.commit("calenderEvent/deleteEvent", {
-        eventObj: props.eventObj
+        eventObj: props.eventObj,
       });
 
       modalIsOpened.value = false;
@@ -165,7 +165,7 @@ export default {
     }
 
     return { closeModal, deleteEvent, editableEvent, updateEvent };
-  }
+  },
 };
 </script>
 
