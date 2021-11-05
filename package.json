@@ -29,6 +29,7 @@
     "idb": "^5.0.8",
     "localbase": "^0.7.4",
     "moment": "^2.29.1",
+    "nanoid": "^3.1.30",
     "register-service-worker": "^1.7.1",
     "tiptap-extensions": "^1.34.0",
     "vue": "^3.0.0",
