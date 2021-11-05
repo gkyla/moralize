@@ -1,15 +1,17 @@
+import { nanoid } from "nanoid";
+
 const calenderEvent = {
   namespaced: true,
   state: {
     events: [
       {
-        id: +new Date(),
+        id: nanoid(),
         title: "event 1",
         start: "2021-11-16",
         end: "2021-11-17"
       },
       {
-        id: +new Date(),
+        id: nanoid(),
         title: "event 2",
         start: "2021-11-14",
         end: "2021-11-15"

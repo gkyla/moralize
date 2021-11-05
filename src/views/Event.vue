@@ -27,6 +27,7 @@ import scrollGridPlugin from "@fullcalendar/scrollgrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
 
+import { nanoid } from "nanoid";
 export default {
   components: {
     FullCalendar,
@@ -98,7 +99,7 @@ export default {
       }
       this.$store.commit("calenderEvent/addEvent", {
         title,
-        id: +new Date(),
+        id: nanoid(),
         start: arg.startStr,
         end: arg.endStr,
       });
