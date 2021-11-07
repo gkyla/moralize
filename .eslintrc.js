@@ -15,6 +15,6 @@ module.exports = {
     "no-nonoctal-decimal-escape" : "off",
     'no-unsafe-optional-chaining' : 'off',
     'no-useless-backreference' : 'off',
-    "comma-dangle": 'never'
+    "comma-dangle": 'off'
   }
 };
