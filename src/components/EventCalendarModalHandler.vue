@@ -114,22 +114,24 @@ export default {
     },
   },
   setup(props, { emit }) {
+    // Need to wrap all of this with onMounted maybe ? ....
+    // so it can handle the select method
+
     const modalIsOpened = ref(true);
     const store = useStore();
     const eventsData = computed(() => store.state.calenderEvent.events);
+    console.log("eventsData state", eventsData.value);
 
     const copyEventObjProps = computed(() =>
       eventsData.value.find(
         (_event) =>
-          _event.id == props.eventObj.event.id &&
-          _event.title == props.eventObj.event.title
+          _event.id == props.eventObj.id && _event.title == props.eventObj.title
       )
     );
     const currentIndexOnTheArray = computed(() =>
       eventsData.value.findIndex(
         (_event) =>
-          _event.id == props.eventObj.event.id &&
-          _event.title == props.eventObj.event.title
+          _event.id == props.eventObj.id && _event.title == props.eventObj.title
       )
     );
 

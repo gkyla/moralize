@@ -28,6 +28,7 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
 
 import { nanoid } from "nanoid";
+import { nextTick } from "@vue/runtime-core";
 export default {
   components: {
     FullCalendar,
@@ -68,21 +69,26 @@ export default {
       this.updateEvent(fcArg);
     },
     handleDrag(fcArg) {
-      console.log("resize handler :", fcArg);
+      console.log("drag handler :", fcArg);
     },
     handleClick(fcEventObj) {
+      console.log("it is clicked ?", fcEventObj);
+      // im only care with the EventApi 💀
+      this.currentClickedEvent = fcEventObj.event;
+
+      console.log(this.currentClickedEvent);
       this.modalIsOpened = true;
-      this.currentClickedEvent = fcEventObj;
     },
     modalStatus(event) {
       console.log("modalStatus", event);
       this.modalIsOpened = event;
     },
     updateEvent(fcArg) {
+      console.log("test", fcArg);
       const eventIndex = this.$store.state.calenderEvent.events.findIndex(
         (_event) => {
           return (
-            _event.id == fcArg.event.id && _event.title == fcArg.event.title
+            _event.id == fcArg.id && _event.title == fcArg.title
           ); /* not checking the data type */
         }
       );
@@ -92,20 +98,18 @@ export default {
       }
     },
     handleSelect(arg) {
-      const title = prompt("title");
-      console.log(arg);
-      if (!title) {
-        return;
-      }
-      this.$store.commit("calenderEvent/addEvent", {
-        title,
+      // muncul pas pengen nambah event
+      this.currentClickedEvent = {
         id: nanoid(),
+        title: "wow",
         start: arg.startStr,
         end: arg.endStr,
-      });
+      };
+
+      this.$store.commit("calenderEvent/addEvent", this.currentClickedEvent);
+      this.modalIsOpened = true;
     },
   },
-  computed: {},
   mounted() {
     console.log(this.eventList);
   },
