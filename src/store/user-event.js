@@ -3,7 +3,8 @@ import { nanoid } from "nanoid";
 const calenderEvent = {
   namespaced: true,
   state: {
-    events: []
+    events: [{ title: "event 1", date: "2021-24-11" }],
+    currentClickedEvent: null
   },
   getters: {
     getEventLists(state) {
@@ -11,21 +12,24 @@ const calenderEvent = {
     }
   },
   mutations: {
-    addEvent(state, event) {
+    setCurrentClickedEvent(state, event) {
+      state.currentClickedEvent = event;
+    },
+    addLabelEvent(state, event) {
       state.events.push(event);
       console.log(state.events);
     },
-    updateEvent(state, { eventIndex, fcArg } /* updatedEvent */) {
+    updateLabelEvent(state, { eventIndex, fcEventApi } /* updatedEvent */) {
+      console.log("fcEvent frm updateLabelEvent :", fcEventApi);
       state.events[eventIndex] = {
         ...state.events[eventIndex],
-        title: fcArg.title,
-        date: "",
-        start: fcArg.startStr,
-        end: fcArg.endStr
+        title: fcEventApi.title,
+        // date: "",
+        start: fcEventApi.startStr,
+        end: fcEventApi.endStr
       };
-      console.log(state.events);
     },
-    deleteEvent(state, { eventObj }) {
+    deleteLabelEvent(state, { eventObj }) {
       console.log(eventObj.title);
       const index = state.events.findIndex(_event => {
         return _event.id == eventObj.id && _event.title == eventObj.title;
