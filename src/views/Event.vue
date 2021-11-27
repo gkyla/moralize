@@ -4,20 +4,19 @@
     <FullCalendar :options="calendarOptions" />
 
     <teleport to="#modal">
-      <transition name="fade" mode="out-in">
-        <event-calender-modal-handler
-          v-if="modalIsOpened"
-          :eventObj="currentClickedEvent"
-          @modalStatus="modalStatus"
-        >
-        </event-calender-modal-handler>
-      </transition>
+      <transition-group name="fade" mode="out-in">
+        <event-edit v-if="modalEditShowed"></event-edit>
+        <event-preferences v-if="modalPreferencesShowed"></event-preferences>
+        <event-add-label v-if="modalLabelShowed"></event-add-label>
+      </transition-group>
     </teleport>
   </div>
 </template>
 
 <script>
-import EventCalenderModalHandler from "../components/EventCalendarModalHandler.vue";
+import EventEdit from "../components/EventCalenders/EventEdit.vue";
+import EventPreferences from "../components/EventCalenders/EventPreferences.vue";
+import EventAddLabel from "../components/EventCalenders/EventAddLabel.vue";
 
 import "@fullcalendar/core/vdom"; // solves problem with Vite
 import FullCalendar from "@fullcalendar/vue3";
@@ -28,16 +27,19 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
 
 import { nanoid } from "nanoid";
-import { nextTick } from "@vue/runtime-core";
+import { mapState } from "vuex";
+
 export default {
   components: {
     FullCalendar,
-    EventCalenderModalHandler,
+    EventEdit,
+    EventPreferences,
+    EventAddLabel,
   },
   data() {
     return {
-      modalIsOpened: false,
       currentClickedEvent: null,
+      preferencesModalIsOpened: false,
       calendarOptions: {
         plugins: [
           dayGridPlugin,
@@ -59,6 +61,14 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapState("display", [
+      "modalEditShowed",
+      "modalPreferencesShowed",
+      "modalAgendaShowed",
+      "modalLabelShowed",
+    ]),
+  },
   methods: {
     handleDrop(fcArg) {
       console.log("drop handler :", fcArg);
@@ -74,40 +84,57 @@ export default {
     handleClick(fcEventObj) {
       console.log("it is clicked ?", fcEventObj);
       // im only care with the EventApi 💀
-      this.currentClickedEvent = fcEventObj.event;
+      // this.currentClickedEvent = fcEventObj.event;
+      this.$store.commit(
+        "calenderEvent/setCurrentClickedEvent",
+        fcEventObj.event
+      );
 
-      console.log(this.currentClickedEvent);
-      this.modalIsOpened = true;
+      this.$store.commit("display/setModalStatus", {
+        type: "edit",
+        status: true,
+      });
     },
     modalStatus(event) {
       console.log("modalStatus", event);
       this.modalIsOpened = event;
     },
     updateEvent(fcArg) {
-      console.log("test", fcArg);
+      /* get EventApi only */
+      const fcEventApi = fcArg.event;
       const eventIndex = this.$store.state.calenderEvent.events.findIndex(
         (_event) => {
           return (
-            _event.id == fcArg.id && _event.title == fcArg.title
+            _event.id == fcEventApi.id && _event.title == fcEventApi.title
           ); /* not checking the data type */
         }
       );
 
       if (eventIndex !== -1) {
-        this.$store.commit("calenderEvent/updateEvent", { eventIndex, fcArg });
+        this.$store.commit("calenderEvent/updateLabelEvent", {
+          eventIndex,
+          fcEventApi,
+        });
       }
     },
     handleSelect(arg) {
-      // muncul pas pengen nambah event
-      this.currentClickedEvent = {
-        id: nanoid(),
-        title: "wow",
-        start: arg.startStr,
-        end: arg.endStr,
-      };
+      this.$store.commit("calenderEvent/setCurrentClickedEvent", arg);
 
-      this.$store.commit("calenderEvent/addEvent", this.currentClickedEvent);
-      this.modalIsOpened = true;
+      this.$store.commit("display/setModalStatus", {
+        type: "preferences",
+        status: true,
+      });
+
+      // muncul pas pengen nambah event
+      // this.currentClickedEvent = {
+      //   id: nanoid(),
+      //   title: "wow",
+      //   start: arg.startStr,
+      //   end: arg.endStr,
+      // };
+
+      // this.$store.commit("calenderEvent/addEvent", this.currentClickedEvent);
+      // this.modalIsOpened = true;
     },
   },
   mounted() {
