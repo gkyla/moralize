@@ -1,4 +1,5 @@
 import { nanoid } from "nanoid";
+import { getUniqueEvent } from "../utils";
 
 const calenderEvent = {
   namespaced: true,
@@ -30,9 +31,8 @@ const calenderEvent = {
       };
     },
     deleteLabelEvent(state, { eventObj }) {
-      console.log(eventObj.title);
       const index = state.events.findIndex(_event => {
-        return _event.id == eventObj.id && _event.title == eventObj.title;
+        return getUniqueEvent(_event, eventObj);
       });
 
       if (index !== -1) {
