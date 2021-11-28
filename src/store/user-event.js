@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid";
 import { getUniqueEvent } from "../utils";
 
 const calenderEvent = {
@@ -20,15 +19,21 @@ const calenderEvent = {
       state.events.push(event);
       console.log(state.events);
     },
-    updateLabelEvent(state, { eventIndex, fcEventApi } /* updatedEvent */) {
+    updateLabelEvent(state, fcEventApi /* updatedEvent */) {
       console.log("fcEvent frm updateLabelEvent :", fcEventApi);
-      state.events[eventIndex] = {
-        ...state.events[eventIndex],
-        title: fcEventApi.title,
-        // date: "",
-        start: fcEventApi.startStr,
-        end: fcEventApi.endStr
-      };
+      const eventIndex = state.events.findIndex(_event => {
+        return getUniqueEvent(_event, fcEventApi);
+      });
+
+      if (eventIndex) {
+        state.events[eventIndex] = {
+          ...state.events[eventIndex],
+          title: fcEventApi.title,
+          // date: "",
+          start: fcEventApi.startStr,
+          end: fcEventApi.endStr
+        };
+      }
     },
     deleteLabelEvent(state, { eventObj }) {
       const index = state.events.findIndex(_event => {
