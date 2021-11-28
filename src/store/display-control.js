@@ -5,7 +5,7 @@ const display = {
     modalPreferencesShowed: false,
     modalLabelShowed: false,
     modalAgendaShowed: false,
-    modalStatus: {} /* "{type, boolean}" */
+    modalStatus: {} /* "{type: modal type, status: boolean}" */
   },
   mutations: {
     setModalStatus(state, { type, status, close }) {
@@ -23,28 +23,30 @@ const display = {
         }
       }
 
-      switch (state.modalStatus.type) {
-        case "edit": {
-          state.modalEditShowed = status;
-          break;
+      if (state.modalStatus.type && status) {
+        switch (state.modalStatus.type) {
+          case "edit": {
+            state.modalEditShowed = status;
+            break;
+          }
+          case "preferences": {
+            state.modalPreferencesShowed = status;
+            break;
+          }
+          case "label": {
+            state.modalLabelShowed = status;
+            break;
+          }
+          case "agenda": {
+            state.modalAgendaShowed = status;
+            break;
+          }
+          default:
+            console.log(
+              "the type of your arg is not available bro 💀💀💀 your type is :",
+              state.modalStatus.type
+            );
         }
-        case "preferences": {
-          state.modalPreferencesShowed = status;
-          break;
-        }
-        case "label": {
-          state.modalLabelShowed = status;
-          break;
-        }
-        case "agenda": {
-          state.modalAgendaShowed = status;
-          break;
-        }
-        default:
-          console.log(
-            "the type of your arg is not available bro 💀💀💀 your type is :",
-            state.modalStatus.type
-          );
       }
     }
   },
