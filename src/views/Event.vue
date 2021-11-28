@@ -7,7 +7,7 @@
       <transition-group name="fade" mode="out-in">
         <event-edit v-if="modalEditShowed"></event-edit>
         <event-preferences v-if="modalPreferencesShowed"></event-preferences>
-        <event-add-label v-if="modalLabelShowed"></event-add-label>
+        <event-label v-if="modalLabelShowed"></event-label>
       </transition-group>
     </teleport>
   </div>
@@ -16,7 +16,7 @@
 <script>
 import EventEdit from "../components/EventCalenders/EventEdit.vue";
 import EventPreferences from "../components/EventCalenders/EventPreferences.vue";
-import EventAddLabel from "../components/EventCalenders/EventAddLabel.vue";
+import EventLabel from "../components/EventCalenders/EventLabel.vue";
 
 import "@fullcalendar/core/vdom"; // solves problem with Vite
 import FullCalendar from "@fullcalendar/vue3";
@@ -26,7 +26,6 @@ import scrollGridPlugin from "@fullcalendar/scrollgrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
 
-import { nanoid } from "nanoid";
 import { mapState } from "vuex";
 
 export default {
@@ -34,7 +33,7 @@ export default {
     FullCalendar,
     EventEdit,
     EventPreferences,
-    EventAddLabel,
+    EventLabel,
   },
   data() {
     return {
