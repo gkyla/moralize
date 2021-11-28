@@ -94,27 +94,10 @@ export default {
         status: true,
       });
     },
-    modalStatus(event) {
-      console.log("modalStatus", event);
-      this.modalIsOpened = event;
-    },
     updateEvent(fcArg) {
-      /* get EventApi only */
       const fcEventApi = fcArg.event;
-      const eventIndex = this.$store.state.calenderEvent.events.findIndex(
-        (_event) => {
-          return (
-            _event.id == fcEventApi.id && _event.title == fcEventApi.title
-          ); /* not checking the data type */
-        }
-      );
 
-      if (eventIndex !== -1) {
-        this.$store.commit("calenderEvent/updateLabelEvent", {
-          eventIndex,
-          fcEventApi,
-        });
-      }
+      this.$store.commit("calenderEvent/updateLabelEvent", fcEventApi);
     },
     handleSelect(arg) {
       this.$store.commit("calenderEvent/setCurrentClickedEvent", arg);
@@ -123,17 +106,6 @@ export default {
         type: "preferences",
         status: true,
       });
-
-      // muncul pas pengen nambah event
-      // this.currentClickedEvent = {
-      //   id: nanoid(),
-      //   title: "wow",
-      //   start: arg.startStr,
-      //   end: arg.endStr,
-      // };
-
-      // this.$store.commit("calenderEvent/addEvent", this.currentClickedEvent);
-      // this.modalIsOpened = true;
     },
   },
   mounted() {
