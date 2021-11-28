@@ -66,14 +66,6 @@ export default {
   setup() {
     const store = useStore();
 
-    // muncul pas pengen nambah event
-    // this.currentClickedEvent = {
-    //   id: nanoid(),
-    //   title: "wow",
-    //   start: arg.startStr,
-    //   end: arg.endStr,
-    // };
-
     const labelInput = ref("");
     const currentClickedEvent = computed(
       () => store.state.calenderEvent.currentClickedEvent
@@ -95,6 +87,10 @@ export default {
       };
 
       store.commit("calenderEvent/addLabelEvent", obj);
+      store.commit("display/setModalStatus", {
+        type: "label",
+        status: false,
+      });
       console.log("addLabel function clicked");
     }
 
