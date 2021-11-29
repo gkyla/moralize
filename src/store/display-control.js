@@ -23,7 +23,7 @@ const display = {
         }
       }
 
-      if (state.modalStatus.type && status) {
+      if (state.modalStatus.type && status !== undefined) {
         switch (state.modalStatus.type) {
           case "edit": {
             state.modalEditShowed = status;
