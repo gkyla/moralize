@@ -97,7 +97,7 @@ export default {
     updateEvent(fcArg) {
       const fcEventApi = fcArg.event;
 
-      this.$store.commit("calenderEvent/updateLabelEvent", fcEventApi);
+      this.$store.commit("calenderEvent/updateLabelHandlerEvent", fcEventApi);
     },
     handleSelect(arg) {
       this.$store.commit("calenderEvent/setCurrentClickedEvent", arg);

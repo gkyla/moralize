@@ -145,12 +145,10 @@ export default {
     }
 
     function updateEvent() {
-      eventsData.value[currentIndexOnTheArray.value] = {
-        ...eventsData.value[currentIndexOnTheArray.value],
-        title: editableEvent.title,
-        start: editableEvent.start,
-        end: editableEvent.end,
-      };
+      store.commit("calenderEvent/updateLabelEventWithNewTitleDate", {
+        oldValue: { ...eventsData.value[currentIndexOnTheArray.value] },
+        newValue: { ...editableEvent },
+      });
 
       console.log("updated");
     }

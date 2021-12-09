@@ -19,19 +19,34 @@ const calenderEvent = {
       state.events.push(event);
       console.log(state.events);
     },
-    updateLabelEvent(state, fcEventApi /* updatedEvent */) {
-      console.log("fcEvent frm updateLabelEvent :", fcEventApi);
+    updateLabelHandlerEvent(state, fcEvent /* updatedEvent */) {
+      // be able to such as resize,drage & drop handler
+      console.log("fcEvent frm updateLabelEvent :", fcEvent);
       const eventIndex = state.events.findIndex(_event => {
-        return getUniqueEvent(_event, fcEventApi);
+        return getUniqueEvent(_event, fcEvent);
       });
 
       if (eventIndex) {
         state.events[eventIndex] = {
           ...state.events[eventIndex],
-          title: fcEventApi.title,
+          title: fcEvent.title,
+          start: fcEvent.startStr,
+          end: fcEvent.endStr
           // date: "",
-          start: fcEventApi.startStr,
-          end: fcEventApi.endStr
+        };
+      }
+    },
+    updateLabelEventWithNewTitleDate(state, { oldValue, newValue }) {
+      console.log("fcEvent frm updateLabelEvent :", oldValue);
+      const eventIndex = state.events.findIndex(_event => {
+        return getUniqueEvent(_event, oldValue);
+      });
+
+      if (eventIndex) {
+        console.log("updateLabelEventWithNewDate");
+        state.events[eventIndex] = {
+          ...state.events[eventIndex],
+          ...newValue
         };
       }
     },
